@@ -1,0 +1,15 @@
+.login{ /* Container Login Empresa */
+    width: 30%; /* Define a largura do elemento */
+    max-width: 600px; /* Define uma largura máxima */
+    margin: 0 auto; /* Centraliza o elemento horizontalmente */
+    padding: 20px; /* Adiciona um espaçamento interno */
+    border: 1px solid #efefef(0, 0%, 80%); /* Adiciona uma borda ao redor do elemento */
+    border-radius: 2px;  /*Arredonda os cantos da borda */
+    box-shadow: 0 4px 8px rgb(209, 209, 209); /* Adiciona uma sombra sutil */
+    border-style: outset 1;
+    text-align: center; /* Centraliza o texto dentro do elemento */
+    font-weight: bold; /* deixa o texto em negrito */
+    font-size: 20px; /* tamanho da fonte*/ 
+    background-color: #FAFAFA;
+    font-family: 'Inter', sans-serif;
+      }
