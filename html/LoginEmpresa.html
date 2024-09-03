@@ -3,13 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css"> <!--mencionando arquivo css-->
+    <link rel="stylesheet" href="/css/style.css">                                      <!--mencionando arquivo css-->
     <title>Login Empresa</title>
 </head>
 <body>
     <div id="container">
-        <div class="login"> Login Empresa </div>
-       
+
+        <div class="login"> Login Empresa </div>                                      <!-- div com descricao da pagina-->
+        <form> <!--definir o que vai dentro do form-->
+            <div class="containerCNPJ">
+                <label for="cnpj">  CNPJ: </label>
+                <input id="cnpj" type="text" name="cnpj" class="inputCNPJ" required> <!--required: nao permite o form ser enviado antes do campo ser preenchido-->
+            </div>
+            <div class="containerSENHA">
+                <label for="senha"> SENHA:  </label>
+                <input type="text" name="senha" id="senha" class="inputSENHA" required>
+            </div>
+            <button>ENTRAR</button>
+        </form> 
+
     </div>
 </body>
 </html>
