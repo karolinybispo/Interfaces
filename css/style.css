@@ -1,6 +1,7 @@
 /*deixando os elementos no centro da pagina*/
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center; /* Centraliza horizontalmente */
   align-items: center;     /* Centraliza verticalmente */
   height: 100vh;           /* Faz com que o body ocupe toda a altura da tela */
@@ -15,20 +16,21 @@ body {
   justify-content: center; /* Centraliza o conteúdo verticalmente */
   align-items: center; /* Centraliza o conteúdo horizontalmente */
   width: 800px;           /* Define a largura do container */
-  height: 70vh; /* define a altura */
+  height: 50vh; /* define a altura */
   max-width: 50vh; /*define largura*/
   border: 1px solid #FF6F07; /* Adiciona uma borda ao redor do elemento */
+  border-radius: 8px; /* Adiciona bordas arredondadas */
   border-style: center 1;
   background-color: #FCFCFC; /*cor de fundo*/
-
+  padding: 20px; /* Adiciona espaçamento interno ao container */
 }
 
 /* Container Login Empresa */
 .login{ 
           height: 20px; /*Define altura dentro do elemento*/
-          width: 400px; /* Define  largura dentro do elemento*/
-          margin-bottom: 50px; /*margem inferior*/
-          margin-top: 0px; /*margem do topo*/
+          width: 500%; /* Define  largura dentro do elemento*/
+          max-width: 100%;
+          margin-bottom: 40px; /*margem inferior*/
           padding: 20px 0; /* Adiciona um espaçamento interno */
           border: 1px solid #efefef; /* Adiciona uma borda ao redor do elemento */
           border-radius: 4px;  /*Arredonda os cantos da borda */
@@ -54,30 +56,35 @@ form {
 
 /* Estilizando inputs */
 .inputCNPJ, .inputSENHA {
-  width: 100%; /* Ocupa toda a largura disponível */
-  padding: 10px 0;
+  width: 300px; /* Ocupa toda a largura disponível */
+  padding: 10px;
   border: 1px solid #CCCCCC; /* Borda cinza */
   border-radius: 4px; /* Arredonda os cantos */
   box-shadow: 0 4px 8px rgb(209, 209, 209);
   background-color: #FAFAFA;
-  
+
 }
 
 /*Estilizando containers Senha e CNPJ*/
 .containerCNPJ{
-  width: 90%; /* Ocupa toda a largura disponível */
+  width: 100%; /* Ocupa toda a largura disponível */
   display: flex;
   flex-direction: column; /* Organiza os elementos em coluna */
   align-items: flex-start; /* Alinha os labels à esquerda */
-  padding: 20px;
+  padding: 0 20px;
   margin-bottom: 20px; /* Espaço abaixo da primeira div */ 
+  margin-right: 10vh; /*margem direita*/
+  margin-left: 20vh;
 }
 .containerSENHA{
-  width: 90%; /* Ocupa toda a largura disponível */
+  width: 100%; /* Ocupa toda a largura disponível */
   display: flex;
   flex-direction: column; /* Organiza os elementos em coluna */
   align-items: flex-start; /* Alinha os labels à esquerda */
-  padding: 20px;
+  padding: 0 20px;
+  margin-left: 20vh; /*margem esquerda*/
+  margin-right: 10vh; /*margem direita*/
+
 }
 
 /* Estilizando os labels */
@@ -99,23 +106,22 @@ button {
   cursor: pointer; /* Muda o cursor para indicar clicável */
   transition: background-color 0.3s; /* Animação na mudança de cor */
   margin-top: 30px;
+  margin-left: 5%;
 }
 /* Estilizando o botão no hover */
 button:hover {
   background-color: #FF4500; /* Muda a cor ao passar o mouse */
 }
 
+/* Estilizando o h1 */
+h1 {
+  font-family: 'Inter', sans-serif; /* Fonte */
+  font-size: 24px; /* Tamanho da fonte */
+  font-weight: bold; /* Deixa o texto em negrito */
+  color: #FF6F07; /* Cor do texto */
+  text-align: center; /* Centraliza o texto */
+  margin-bottom: 20px; /* Espaço abaixo do título */
+  margin-top: 0; /* Remove a margem superior para ajustar com o topo da página */
+  width: 100%; /* Garante que o título ocupe toda a largura da tela */
 
-
-
-
-
-       
-
-
-
-
-      
-    
-       
-  
+}
