@@ -1,0 +1,84 @@
+body { /*estiliza o corpo da pagina*/
+    /*Usa Flexbox para alinhar o conteúdo*/
+    display: flex; 
+    /*Centraliza o conteúdo horizontalmente*/
+    justify-content: center;
+    /*Centraliza o conteúdo verticalmente*/
+    align-items: center;
+    /*Define a altura da página para preencher 100% da altura da janela.*/
+    height: 100vh;
+    /*Remove qualquer margem padrão.*/
+    margin: 0; 
+    /*Define uma cor de fundo */
+    background-color: #f4f4f4; 
+    /*Define a fonte do texto*/
+    font-family: Arial, sans-serif; 
+}
+
+/*estiliza  o container do formulario*/ 
+.form-container {
+    /*Define a cor de fundo */
+    background-color: #f8f8f8;
+    /* Adiciona espaço interno (padding) ao redor do conteúdo*/
+    padding: 30px 40px;
+    /*Arredonda as bordas do contêiner.*/
+    border-radius: 8px;
+    /*Adiciona uma sombra sutil ao redor do contêiner.*/
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /*Define a largura do contêine*/
+    width: 300px;
+    /*Centraliza o texto dentro do contêiner*/
+    text-align: center;
+}
+/*estiliza o titulo h2*/
+h2 {
+    /*define a cor do texto*/
+    color: #f06530;
+    /* Adiciona uma margem inferior para separar o título dos campos do formulário.*/
+    margin-bottom: 20px;
+}
+/*estiliza o conteineres de campo de formulario*/
+.campo {
+    /*Adiciona um espaçamento inferior entre cada campo.*/
+    margin-bottom: 15px;
+}
+
+/*estiliza os campos de entrada*/
+.campo input {
+    /*define a largura*/
+    width: 90%;
+    /*Adiciona espaçamento interno.*/
+    padding: 10px;
+    /* Define uma borda ao redor do campo*/
+    border: 1px solid #ccc;
+    /*arredonda as bordas*/
+    border-radius: 4px;
+    /*define o tamanho da fonte dentro do campo de texto*/
+    font-size: 16px;
+}
+
+/*Estiliza o botão de envio*/
+.campo button {
+    /*Define que o botão ocupe a largura do contêiner*/
+    width: 100%;
+    /*Adiciona espaçamento interno.*/
+    padding: 10px;
+    /* Define a cor de fundo do botão*/
+    background-color: #f06530;
+    /*Remove a borda padrão do botão.*/
+    border: none;
+    /*Arredonda as bordas do botão.*/
+    border-radius: 4px;
+    /* Define a cor do texto*/
+    color: white;
+    /*Define tamanho da fonte*/
+    font-size: 16px;
+    /* Define o cursor como uma mãozinha quando o botão é apontado*/
+    cursor: pointer;
+}
+
+/*Estiliza o botão quando o usuário passa o cursor sobre ele*/
+.campo button:hover {
+    /*Muda a cor de fundo do botão*/
+    background-color: #e0542b;
+}

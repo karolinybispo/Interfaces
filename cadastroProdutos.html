@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Novos Produtos</title>
+    <link rel="stylesheet" href="cadastroProdutos.css">
+</head>
+<body>
+    <div class="product-registration-container">
+
+        <div class="product-registration-box">
+            <h3>Cadastro de novo produto</h3>
+            <form action="#" method="POST">
+                <div class="campo">
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Selecione a categoria</option>
+                        <option value="categoria1">Categoria 1</option>
+                        <option value="categoria2">Categoria 2</option>
+                        <option value="categoria3">Categoria 3</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label for="produto">Produto</label>
+                    <input type="text" id="produto" name="produto" placeholder="nome produto" required>
+                </div>
+                <div class="campo">
+                    <label for="descricao">Descrição do produto</label>
+                    <textarea id="descricao" name="descricao" placeholder="descrição do novo produto" required></textarea>
+                </div>
+                <div class="campo">
+                    <button type="submit" class="btn-adicionar">adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

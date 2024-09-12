@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.password-recovery-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.password-recovery-box {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+h2 {
+    color: #f06530;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background-color: #f06530;
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+p {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.campo {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.campo input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btn-recuperar {
+    width: 100%;
+    padding: 10px;
+    background-color: #f06530;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-recuperar:hover {
+    background-color: #e0542b;
+}
+
+.btn-voltar {
+    width: 100%;
+    padding: 10px;
+    background-color: #cccccc;
+    border: none;
+    border-radius: 4px;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-voltar:hover {
+    background-color: #bbbbbb;
+}
