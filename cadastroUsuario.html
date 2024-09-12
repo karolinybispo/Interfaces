@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro do usurario</title>
-    <link rel="stylesheet" href="cadastroUsuario.css">
-<body>
+    <!--suportar uma ampla gama de caracteres -->
+    <meta charset="UTF-8"> 
+    <!--garante responsividade para dispositivos moveis-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- titulo da pagina na aba do navegador-->
+    <title>Cadastro do usurario</title> 
+    <!-- vinculo o css externo utilizado para estilizar o html-->
+    <link rel="stylesheet" href="cadastroUsuario.css"> 
+
+    <!-- inicia o corpo do conteudo visivel-->
+<body> 
+     <!-- inicia um elemento div com a classe form-container usado para agrupar e estilizar-->
     <div class="form-container">
-        <h2>Cadastro</h2>
+        <!-- titulo do formulario-->
+        <h2>Cadastro</h2> 
+        <!-- inicia o formulario com metodo e action para indicar para onde sera enviado-->
         <form action="#" method="POST">
-            <div class="campo">
-                <input type="text" name="nome" placeholder="nome" required>
-            </div>
+            <!-- cria um elemento div com a classe campo para personalizar os campos--> 
+            <div class="campo"> 
+                <!--cria um campo input com name e placeholder mostra a palavra que ficara a mostra-->
+                <!-- required torna o preenchimento obrigatorio-->
+                <input type="text" name="nome" placeholder="nome" required> 
+            </div>                                                          
             <div class="campo">
                 <input type="text" name="cpf" placeholder="CPF" required>
             </div>
@@ -25,6 +37,7 @@
                 <input type="password" name="senha" placeholder="senha" required>
             </div>
             <div class="campo">
+                <!--botão do tipo submit para enviar o formulario-->
                 <button type="submit">finalizar</button>
             </div>
         </form>
