@@ -141,7 +141,7 @@ h3::after {
 }
 
 
-/* Estilizar o clicavel das opcoes no navbar*/
+/* Estilizando o clicavel das opcoes no navbar*/
 .navbar-nav a {
     color: #fff;
     text-decoration: none;
@@ -154,6 +154,8 @@ h3::after {
     transition: background-color 0.3s ease;
 }
 
-/* item adicionada para tornar o codigo responsivo: 'box-sizing: border-box' ele faz o padding e as bordas serem incluidas na largura total do elemento (que foi definida como width:100%) sem eles, borda e padding ultrapassariam 100%, isso evita que o tamanho real do input e botao sejam maior que a div que as contem.*/
+
+
+/* item adicionada para tornar os elementos que o possui nao ultrapassem o container pai: 'box-sizing: border-box' ele faz o padding e as bordas serem incluidas na largura total do elemento (que foi definida como width:100%) sem eles, borda e padding ultrapassariam 100%, isso evita que o tamanho real do input e botao sejam maior que a div que as contem.*/
 
     
