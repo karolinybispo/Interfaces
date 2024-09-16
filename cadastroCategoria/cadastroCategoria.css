@@ -68,7 +68,7 @@ h3::after {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-    box-sizing: border-box; /*incluido para tbm nao ter o padding e border ultrapassarem o container pai. O input e button terem o border-box e width iguais permitem que eles fiquem alinhados*/
+    box-sizing: border-box; /*incluido para tbm nao ter o padding e border ultrapassarem o container pai. Os inputs e button terem o border-box e width iguais permitem que eles fiquem alinhados*/
 }
 
 .btn-adicionar {
@@ -141,7 +141,7 @@ h3::after {
 }
 
 
-/*css para estilizar o clicavel das opcoes no navbar*/
+/* Estilizar o clicavel das opcoes no navbar*/
 .navbar-nav a {
     color: #fff;
     text-decoration: none;

@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="cadastroProdutos.css">
 </head>
 <body>
+
+
+      <!-- NAV-BAR -->
+      <div class="navbar">
+        <button class="navbar-toggler" id="navbar-toggler">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="navbar-collapse" id="navbar-collapse">
+            <ul class="navbar-nav">
+                <li><a href="cadastroCategoria.html">Cadastro de categoria</a></li>
+                <li><a href="relatorio.html">Relatorios</a></li>
+                <li><a href="pedidosOnline.html">Pedidos online</a></li>
+              
+            </ul>
+        </div>
+    </div>
+    <script src="./scriptProdutos.js"></script>
+
+
     <div class="product-registration-container">
 
         <div class="product-registration-box">
@@ -27,7 +48,7 @@
                 </div>
                 <div class="campo">
                     <label for="descricao">Descrição do produto</label>
-                    <textarea id="descricao" name="descricao" placeholder="descrição do novo produto" required></textarea>
+                    <textarea id="descricao" name="descricao" placeholder="descrição do novo produto" required></textarea> <!--tag q permite varias linhas de texto-->
                 </div>
                 <div class="campo">
                     <button type="submit" class="btn-adicionar">adicionar</button>

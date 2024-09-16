@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.product-registration-container {
+    /*as 3 novas insercoes ja deixou tudo aparecendo corretamente em telas menores*/
+    display: flex; /*Insercao: transforma o container pai em um flex container, desse jeito os layout dos elementos filhos (tudo que esta dentro dessa div) ficam controlados de forma mais eficiente */
+    justify-content: center; /*Insercao: alinha todos os itens filhos horizontalmente no centro, no espaco que estiver disponivel para eles*/ 
+    align-items: center; /*Insercao: alinha todos os itens filhos verticalmente no centro. Aqui eles ficarao centralizados na altura do container pai*/
+    text-align: center;
+    width: 100%; /*define que o container vai ocupar 100% de todo largura disponovel que ela tiver, se for 800px, sera 100% desse espaco total, se for 20px de largura, sera 100% desses 20px de largura*/
+    max-width: 800px; /*alteracao: largura maxima de 600 foi para 800, assim ficou maior essa div. A max-width define a largura maxima que esse container deve ter quando estiver em telas bemm grandes. Resumindo, eh o limite maximo para que o container nao se expanda demais em espacos grandes*/
+    margin: 0 auto;
+    overflow: auto; /* Insercao: Para permitir rolagem se o conteúdo exceder a altura máxima */
+}
+
+
+.product-registration-box {
+    background-color: #ffffff;
+    padding: 60px; /*Alteracao: mudando o valor de 20 para 60px, deixou ele maior*/
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    border: 3px solid #f06530;
+    text-align: center;
+    width: 100%;
+    max-width: 800px; /*alteracao: largura maxima de 600 foi para 800, assim ficou maior essa div*/
+    margin: 0 auto;
+}
+
+h3 {
+    color: #f06530;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h3::after {
+    content: '   ';
+    display: block;
+    width: 230px;
+    height: 3px;
+    background-color: #f06530;
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.campo {
+    margin-bottom: 20px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+    width: 100%;
+    padding: 15px; /*alteracao de 10 para 15, assim as caixas de inserir valor ficaram maiores*/
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /** Inserido: Nao deixa o padding e border ultrapassarem o container pai 'product-registration-container'*/
+}
+
+.campo textarea {
+    resize: none;
+    height: 100px;
+}
+
+.btn-adicionar {
+    width: 100%;
+    padding: 10px;
+    background-color: #f06530;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-sizing: border-box; /* Inserido: Nao deixa o padding e border ultrapassarem o container pai 'product-registration-container'*/
+}
+
+.btn-adicionar:hover {
+    background-color: #e0542b;
+}
+
+/* Inserido:*/
+@media (max-width: 600px) { /*regras serao aplicadas quando a largura for menor ou igual que 600px*/
+    select {
+        width: 100%; /*vai ocupar 100% da largura disponivel*/
+        font-size: 30px; /* Tamanho de fonte um pouco menor para caber bem */
+        padding: 25px; /* Padding ajustado */
+    }
+}
+
+
+
+/*A FAZER: deixar altura responsiva */
