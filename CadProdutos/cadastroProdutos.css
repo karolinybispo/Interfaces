@@ -25,37 +25,25 @@ body {
 
 .product-registration-box {
     background-color: #ffffff;
-    padding: 60px; /*Alteracao: mudando o valor de 20 para 60px, deixou ele maior*/
+    padding: 20px; /*Alteracao: mudando o valor de 20 para 60px, deixou ele maior*/
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: left;
-    border: 3px solid #f06530;
+    border: 2px solid #f06530;
     text-align: center;
     width: 100%;
     max-width: 800px; /*alteracao: largura maxima de 600 foi para 800, assim ficou maior essa div*/
     margin: 0 auto;
 }
 
-h3 {
-    color: #f06530;
+h2 {
+    color: #000;
     margin-bottom: 20px;
     text-align: center;
     position: relative;
     padding-bottom: 10px;
 }
 
-h3::after {
-    content: '   ';
-    display: block;
-    width: 230px;
-    height: 3px;
-    background-color: #f06530;
-    margin: 0 auto;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
 
 .campo {
     margin-bottom: 20px;
@@ -63,6 +51,7 @@ h3::after {
 
 .campo label {
     display: block;
+    text-align: left;
     margin-bottom: 5px;
     color: #000;
 }
