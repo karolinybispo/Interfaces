@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+.titulo_pag{
+    padding: 10px;
+    border: 1px  #ffffff;
+    border-radius: 3px; /*leve arrendondamento*/
+    box-shadow: 20px 20px 50px inset rgb(238, 238, 238); /*sombra interna*/
+    margin-bottom: 20px; /*distancia de valor total*/
+}
+.container {
+    width: 30%;
+    height: 60%;
+    background-color: #fff;
+    padding: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.total {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.price {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px; /*distancia do dinheiro em relacao ao pix*/
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 90px; /*distancia entre o container do codigo do pix e as informacao de quando recebera o vaucher*/
+}
+
+.payment-method img {
+    height: 150px;
+    margin-right: 50px;
+}
+
+.pix-code {
+    font-family: monospace;
+    font-size: 14px;
+    border-left: 1px solid #ddd;
+    padding-left: 10px;
+}
+
+.info-text {
+    font-size: 12px;
+    margin-top: 10px;
+    color: #888;
+}
+
+/* Ícone no canto superior esquerdo */
+.home{
+    position: fixed; /* Fixa na tela */
+    top: 10px; /* Distância do topo */
+    left: 15px; /* Distância da esquerda */
+    font-size: 24px; /* Tamanho do ícone */
+    color: #000000; /* Cor do ícone */
+    cursor: pointer; /* Muda o cursor para indicar clicável */
+    z-index: 10; /* Para sobrepor outros elementos */}
