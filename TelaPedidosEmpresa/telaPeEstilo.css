@@ -63,5 +63,19 @@ body {
     border-left: 4px solid #4caf50;
 }
 
+/*estilo da div: 'class="w3-sidebar w3-bar-block"
+      id="mySidebar"' */
+#w3Sidebar {
+    display: none;
+    z-index: 5;
+  }
+/* estilo para a div: ' class="w3-overlay"
+      onclick="w3_close()"
+      id="myOverlay"'*/
+#myOverlay {
+    cursor: pointer;
+  }
 
-
+#costomizar-botao{
+    color: #ff5722;
+}
