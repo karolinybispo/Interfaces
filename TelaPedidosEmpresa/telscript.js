@@ -1,4 +1,4 @@
-//JS to open and close sidebar with overlay effect
+//JS para abrir e fechar sidebar(barra de navegacao que esta dentro do humburguer) com overlay effect
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("myOverlay").style.display = "block";

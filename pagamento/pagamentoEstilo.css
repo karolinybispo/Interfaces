@@ -69,12 +69,14 @@ h1 {
     color: #888;
 }
 
-/* Ícone no canto superior esquerdo */
+/* Ícone casinha */
 .home{
     position: fixed; /* Fixa na tela */
-    top: 10px; /* Distância do topo */
-    left: 15px; /* Distância da esquerda */
+    top: 10px; /* Distância do topo e move para o topo da pagina*/
+    right: 15px; /* Distância da direita e move o item para a direita */
     font-size: 24px; /* Tamanho do ícone */
-    color: #000000; /* Cor do ícone */
+    color: #181717; /* Cor do ícone */
     cursor: pointer; /* Muda o cursor para indicar clicável */
-    z-index: 10; /* Para sobrepor outros elementos */}
+    z-index: 10; /* Para sobrepor outros elementos */
+    border: none;
+}
