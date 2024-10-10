@@ -10,5 +10,5 @@ if (!$con){
     die("falha na conexao " + mysqli_connect_error());
 }
 
-echo ( "conexao realizada");
+echo ( "conexao realizada"); //http://localhost/interfaces/conexaoBanco/db_conexao.php
 ?>
