@@ -1,4 +1,4 @@
-<!--  -->
+<?php
 $serverName = "localhost"; //servidor do banco de dados
 $userServer = "root"; //usuario mysql
 $senhaServer= "";
@@ -11,3 +11,4 @@ if (!$con){
 }
 
 echo ( "conexao realizada");
+?>
