@@ -3,7 +3,7 @@ include '../conexaoBanco/db_conexao.php';
 
 // Consulta para buscar os produtos do banco de dados
 $sql = "SELECT * FROM produto";
-$result = mysqli_query($conexao, $sql);
+$result = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>

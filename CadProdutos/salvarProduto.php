@@ -1,5 +1,5 @@
 <?php
-include('conexaoBanco/db_conexao.php'); // Conectando ao banco de dados
+include '../conexaoBanco/db_conexao.php'; // Conectando ao banco de dados
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_categoria = $_POST['id_categoria'];
@@ -12,10 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO produto (id_categoria, nome_produto, descricao, preco_produto, qtd_estoque) 
             VALUES ('$id_categoria', '$nome_produto', '$descricao', '$preco_produto', '$qtd_estoque')";
     
-    if (mysqli_query($conexao, $sql)) {
+    if (mysqli_query($conn, $sql)) {
         echo "Produto cadastrado com sucesso!";
     } else {
-        echo "Erro ao cadastrar produto: " . mysqli_error($conexao);
+        echo "Erro ao cadastrar produto: " . mysqli_error($conn);
     }
 }
 ?>
