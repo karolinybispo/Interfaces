@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./pagestilo.css">
+    <!--Link para usar o icon da casinha, CDN da Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!--W3 shocool para barra de navegacao com humbuguer-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+    
+
+    <!-- Barra de navegacao --> <!--nessa barra de navegacao foi adc itens da barra de navegacao da direita na parte "Left & Right Side Navigation" do w3 que apresenta css do proprio w3 (W3.CSS) para navbar-->
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-right SIDE-BAR" id="mySidebar"> <!-- esse id sera usado no js como referencia de onde a funcao vai ser executado-->
+        <button onclick="w3_close()" type="button" class="w3-bar-item w3-button w3-large">Close &times;</button> <!--botao close que fica junto com o sidebar-->
+        <a href="#" class="w3-bar-item w3-button">Link 1</a>
+        <a href="#" class="w3-bar-item w3-button">Link 2</a>
+        <a href="#" class="w3-bar-item w3-button">Link 3</a>
+  </div>
+
+     <div id="icones">
+        <!-- Icone botao humburguer-->
+        <button class="humburguer" type="button" onclick="w3_open()">☰</button>   <!-- Ao ser apertado a funcao "w3_open()" que abre o side bar eh chamado e fica visivel-->
+         <!--Icone Casinha-->
+        <a href="/cardapio/cardapio.html"> 
+            <button type="button" class="home" aria-label="home"> <!--Botao interativo que o user clica. A tag <a> encaminha o user a pagina no href-->
+                <i class="fa-solid fa-house"></i>   <!-- 'i' renderiza icones -->
+                     </button> 
+                            </a>
+        </div>
+
+<div class="alinhamento">
+    <div class="pagamento">
+        <h1> Pagamento </h1>
+    </div>
+    <div class="container">
+            <p class="val">Valor total: </p>
+    
+        <p class="valor-total">R$ valor vai vir do back</p>
+    
+    <div class="container-img-pix">
+        <img src="./pix.png" alt="">
+        <div>
+            <p class="pix">C834T8NDXYE17<br>BRVETOX74R</p>
+        </div>
+    </div>
+    <p class="text-final">Assim que for efetuado o pagamento, você receberá o voucher</p>
+    </div>
+</div>
+
+    <script src="./pagamentoScript.js"></script>
+</body>
+</html>

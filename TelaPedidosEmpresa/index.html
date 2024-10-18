@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pedidos Online</title>
+   
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"/>
+   
+    <!--CSS-->
+    <link rel="stylesheet" href="./telaPeEstilo.css" />
+   
+    <!--Navbar W3Schools-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  
+  </head>
+
+  <body>
+    
+
+    <!-- (BARRA DE NAVEGACAO)-->
+    <div
+      class="w3-sidebar w3-bar-block"
+      id="mySidebar"
+    >
+      <button type="button" class="w3-bar-item w3-button" onclick="w3_close()">Fechar</button>
+      <a href="#" class="w3-bar-item w3-button">Cadastro de categoria</a>
+      <a href="#" class="w3-bar-item w3-button">Cadastro de produtos</a>
+    </div>
+    <!-- Sobreposicao da barra de navegacao-->
+    <div
+      class="w3-overlay"
+      onclick="w3_close()"
+      id="myOverlay"
+    ></div>
+    <!--Icone humburguer-->
+    <button type="button" class="w3-button w3-xxlarge" id="costomizar-botao" onclick="w3_open()" aria-label="icone">
+      &#9776;
+    </button> <!-- esse trecho cria um botao que ao ser clicado chama a funcao w3_open(). Exibe o icone humburguer que é clicavel, quando clicado chama w3_open() que abre um menu lateral (side bar). Quando apertado para fechar, ele chama o w3_close()-->
+
+
+
+    <!--Container Principal-->
+    <div class="container">
+      <h5 class="titulo">PEDIDOS</h5>
+        <div class="container-colunas"> <!-- envolve os 3 status do pedido-->
+            <div class="row mt-4"> <!--bootstrap-->
+          
+    <!-- COLUNA A Fazer -->
+        <div class="col-md-4">     <!--bootstrap-->
+            <div class="titulo_status">  <h5 class="text-center"> <strong> A Fazer </strong> </h5>  </div>
+                <div id="Afazer" class="status   a_fazer">
+                    <div class="pedido">
+                        
+                        <p>pedido vai vir do banco</p>
+                        <button type="button" onclick="moverParaFazendo(this)" class="btn btn-outline-warning btn-sm">Mover Fazendo</button>
+                    
+                    </div>
+            </div>
+        </div>
+
+    <!-- COLUNA Fazendo -->
+        <div class="col-md-4">
+            <div class="titulo_status">  <h5 class="text-center"><strong> Fazendo </strong></h5>  </div>
+                <div id="Fazendo"  class="status fzd">
+                    
+                    <!--pedido chegou de a fazer-->
+            
+                </div>
+        </div>
+
+    <!-- COLUNA Feito -->
+        <div class="col-md-4">
+            <div class="titulo_status"> <h5 class="text-center"><strong> Feito </strong></h5>     </div>
+                <div  id="Feito"  class="status feit">
+                    
+                    <!--pedido chegou de a fazer-->
+
+
+                </div>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    
+    <!-- Bootstrap JS (opcional, apenas para funcionalidades JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JS-->
+    <script src="./telscript.js"></script>
+  </body>
+</html>

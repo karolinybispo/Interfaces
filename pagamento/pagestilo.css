@@ -1,0 +1,89 @@
+.alinhamento{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    background-color: #FEFFFA;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /*efeito de div saindo para fora*/
+    border-radius: 5px; /*arrendondamento*/
+    width: 100%; /* vai se adaptar à largura da tela, ocupando 100% do espaço disponível*/
+    max-width: 600px; /*vai ter uma largura de no maximo 600px*/
+    height: 100%;
+    max-height: 600px;
+    margin-top: 5px; /*margem em relacao a parte de cima, ou seja, fica com um pouco longe de pagamento*/
+}
+
+.val{
+    text-align: center; /*esse texto esta no centro da div*/
+    font-size: 20px; /*aumentei tamanho da fonte*/
+    font-weight: bold; /*deixar a fonte em negrito*/
+}
+
+.valor-total{
+    margin: 10px;
+}
+
+.pagamento{
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /*efeito de div saindo para fora*/
+    border-radius: 5px; /*arrendondamento*/
+    width: 100%;
+    max-width: 600px;
+    text-align: center; /*texto que esta dentro da div ficou alinhado*/
+    font-weight: bold; /*fonte mais forte*/
+    margin-top: 50px; /*margem em relacao a parte de cima*/
+}
+
+.container-img-pix{
+    background-color: rgb(255, 255, 255);
+    border: 1px solid;
+    position: relative; /*precisa ter para o elemento que esta aqui dentro possa ser posicionado de forma absoluta em relacao a div*/
+}
+
+img{
+    width: 100%; /*vai ocupar 100% da largura disponivel*/
+    max-width: 200px; /*maximo de pixel que pode usar*/
+    margin: 5px; /* margem de 5 px*/
+}
+
+.pix{
+    position: absolute; /*texto foi posicionado em relacao a div sua div que contem 'position:relative'*/
+    top: 5px; /*coloca na parte de cima*/
+    right: 15px; /*coloca na parte direita*/
+   
+}
+
+.text-final{
+    text-align: center; /*alinhou o texto no centro*/
+}
+
+
+/*casinha  e humburguer*/
+.humburguer, .home{
+    color: #181717;
+    border: none;
+    background-color: transparent;
+    cursor: pointer; /*quando passar o mause em cima, fica com a maozinha no mause*/
+}
+.humburguer{
+    font-size: 30px;
+}
+
+.home{
+    font-size: 25px;
+}
+
+#icones{
+    top: 10px; /*distancia do topo da tela*/
+    right: 10px; /*distancia da direita da tela*/
+    position: fixed;
+    align-items: flex-start;   }
+
+.SIDE-BAR{
+        display:none; 
+        right:0;
+    }
+
