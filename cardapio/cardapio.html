@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio</title>
     <link rel="stylesheet" href="cardapio.css">
+    <!--VUE-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
 </head>
 <body>
     <header>
@@ -26,39 +28,30 @@
         </nav>
     </header>
 
+
     <main>
         <section class="sugestoes">
             <h2>Sugestões do dia</h2>
-            <div class="produto-lista">
-                <div class="produto">
-                    <img src="https://loja.barracadoze.com.br/wp-content/uploads/2020/10/x-egg-salada.png" alt="X-file">
-                    <h3>X-file</h3>
-                    <p>R$ 25,00</p>
+            <div id="app" class="produto-lista"> <!--vue inicia aqui-->
+                <div class="produto"> <!-- produtos serao renderizados na estrutura dessa div-->
+                    <img :src="produto.foto" :alt="produto.nome">
+                    <h3>{{produto.nome}}</h3>
+                    <p>R$ {{produto.preco}}</p>
                     <div class="quantidade">
-                        <input type="number" value="1" min="1">
+                        <input type="number" v-model.number="produto.quantidade" min="1">
                     </div>
-                    <button>Adicionar</button>
-                </div>
-                <div class="produto">
-                    <img src="https://img.freepik.com/fotos-premium/fatia-de-bolo-de-chocolate-no-fundo-branco_720722-8497.jpg" alt="Fatia de torta">
-                    <h3>Fatia de torta</h3>
-                    <p>R$ 10,00</p>
-                    <div class="quantidade">
-                        <input type="number" value="1" min="1">
-                    </div>
-                    <button>Adicionar</button>
-                </div>
-                <div class="produto">
-                    <img src="https://thumbs.dreamstime.com/b/c%C3%B3acola-cl%C3%A1ssica-pode-ser-isolada-em-fundo-branco-para-uso-editorial-ilustra%C3%A7%C3%A3o-vetorial-da-empresa-cocacola-%C3%A9-l%C3%ADder-de-185281589.jpg" alt="Coca lata">
-                    <h3>Coca lata</h3>
-                    <p>R$ 5,00</p>
-                    <div class="quantidade">
-                        <input type="number" value="1" min="1">
-                    </div>
-                    <button>Adicionar</button>
+                    <button type="button" @click="adcProduto(produto)">Adicionar</button>
                 </div>
             </div>
         </section>
     </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!--axios-->
+    <script>
+        
+    </script>
+
+
 </body>
 </html>
