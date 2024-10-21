@@ -18,7 +18,7 @@
         </button>
         <div class="navbar-collapse" id="navbar-collapse">
             <ul class="navbar-nav">
-                <li><a href="../CadProdutos/cadastroProdutos.html">Cadastro de novos produtos</a></li>
+                <li><a href="../CadProdutos/cadastroProdutos.php">Cadastro de novos produtos</a></li>
                 <li><a href="relatorio.html">Relatorios</a></li>
                 <li><a href="pedidosOnline.html">Pedidos online</a></li>
 
@@ -37,10 +37,7 @@
                         <label for="categoria">Categoria</label>
                         <input type="text" id="categoria" name="categoria" placeholder="Nome da categoria" required>
                     </div>
-                    <div class="campo">
-                        <label for="descricao">Descrição</label>
-                        <input id="descricao" name="descricao" placeholder="Descrição da categoria" required>
-                    </div>
+                
                     <div class="campo">
                         <button type="submit" class="btn-adicionar">adicionar</button>
                     </div>
