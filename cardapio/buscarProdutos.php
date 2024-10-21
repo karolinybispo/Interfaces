@@ -12,11 +12,27 @@ header('Content-Type: application/json'); // Define o cabeçalho para JSON
 
 
 // Consulta SQL para buscar todos os produtos 
-$sql = $mySqli->prepare("SELECT img_produto, nome_produto, preco_produto FROM tb_produtos");
+$sql = $mySqli->prepare("SELECT img_proguto, nome_produto, preco_produto FROM tb_produtos");
 $sql->execute();
 
-// Array para armazenar os produtos
-$produtos = $sql->fetchAll(PDO::FETCH_ASSOC);
-//retorna produtos em formato json
-echo json_decode($produtos);
+$result = $sql->get_result();
+
+//criando array e armazenado ent tiver valor
+$produtos = [];
+while ($row = $result->fetch_assoc()){
+    $produtos[] = $row; // cada produto sera adc 
+}
+
+//converte array em json
+$produtos_json = json_encode($produtos);
+
+//exibe os produtos em formato json
+header('content-type: application/json'); // define o tipo de conteudo como json
+echo $produtos_json;
+
+//fecha a declaracao
+$sql->close();
+$mySqli->close();
+
+
 ?>
