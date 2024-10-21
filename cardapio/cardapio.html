@@ -59,7 +59,7 @@
                 methods: {
                     async fetchProdutos(){
                         try{
-                            const response = await axios.get(trazProdutos.php);
+                            const response = await axios.get(buscarProdutos.php);
                             this.produtos = response.data; // php retornou um array de produtos
                         } catch (error) {
                       this.erro = 'Ocorreu um erro ' + error.message;
