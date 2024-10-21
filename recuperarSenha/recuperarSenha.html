@@ -24,15 +24,17 @@
                     <button type="button" class="btn-voltar" onclick="window.location.href='../loginUsuario/loginUsuario.html'">Voltar ao Login</button>
                 </div>
         </div>
-        <div v-if="emailValidado">
+        <div class="password-recovery-box"  v-if="emailValidado">
             <h3>E-mail validado, altere sua senha</h3>
-            <input v-model="novaSenha" type="password" placeholder="Digite sua nova senha" />
-            <button @click="alterarSenha">Alterar Senha</button>
+            <div class="campo" >
+            <input  v-model="novaSenha" type="password" placeholder="Digite sua nova senha" />
+            <button class="btn-recuperar" type="button"  @click="alterarSenha">Alterar Senha</button>
+            </div>
             <p v-if="mensagem">{{ mensagem }}</p>
         </div>
     </div>
 
-    
+
     <script>
         const app = Vue.createApp({
           data() {
