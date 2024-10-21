@@ -49,7 +49,38 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!--axios-->
     <script>
+
+        const app = Vue.creatApp 
+        (
+            {
+                data(){
+                    return{
+                        produtos: [] // inicializa lista de produtos
+                    };
+                },
+                methods: {
+                    async fetchProdutos(){
+                        try{
+                            const response = await axios.get(trazProdutos.php);
+                            this.produtos = response.data; // php retornou um array de produtos
+                        } catch (error){
+                            
+                        }
+                    }
+                }
+            }
+        )
         
+
+
+
+
+
+
+
+
+
+        app.mount('#app');
     </script>
 
 
