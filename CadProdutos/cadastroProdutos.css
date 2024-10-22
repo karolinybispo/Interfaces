@@ -1,3 +1,4 @@
+/* Estilos Gerais */
 body {
     margin: 0;
     padding: 0;
@@ -6,47 +7,51 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     flex-direction: column;
 }
 
-.product-registration-container {
-    /*as 3 novas insercoes ja deixou tudo aparecendo corretamente em telas menores*/
-    display: flex; /*Insercao: transforma o container pai em um flex container, desse jeito os layout dos elementos filhos (tudo que esta dentro dessa div) ficam controlados de forma mais eficiente */
-    justify-content: center; /*Insercao: alinha todos os itens filhos horizontalmente no centro, no espaco que estiver disponivel para eles*/ 
-    align-items: center; /*Insercao: alinha todos os itens filhos verticalmente no centro. Aqui eles ficarao centralizados na altura do container pai*/
-    text-align: center;
-    width: 80%; /*define que o container vai ocupar 100% de todo largura disponovel que ela tiver, se for 800px, sera 100% desse espaco total, se for 20px de largura, sera 100% desses 20px de largura*/
-    max-width: 800px; /*alteracao: largura maxima de 600 foi para 800, assim ficou maior essa div. A max-width define a largura maxima que esse container deve ter quando estiver em telas bemm grandes. Resumindo, eh o limite maximo para que o container nao se expanda demais em espacos grandes*/
-    margin: 0 auto;
-    overflow: auto; /* Insercao: Para permitir rolagem se o conteúdo exceder a altura máxima */
+/* Container Principal */
+.container {
+    margin-top: 60px; /* Espaço suficiente para evitar sobreposição da navbar */
+    width: 100%;
+    max-width: 800px; /* Reduzido para caber melhor em telas grandes */
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
-.product-registration-box {
+/* Container do formulário */
+.product-registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px; /* Reduzido para evitar uso excessivo de largura */
+    padding: 10px; /* Reduzido para compactar o layout */
     background-color: #ffffff;
-    padding: 20px; /*Alteracao: mudando o valor de 20 para 60px, deixou ele maior*/
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    border: 2px solid #f06530;
-    text-align: center;
-    width: 100%;
-    max-width: 800px; /*alteracao: largura maxima de 600 foi para 800, assim ficou maior essa div*/
-    margin: 0 auto;
+    overflow: hidden; /* Remover qualquer rolagem desnecessária */
 }
 
+.product-registration-box {
+    width: 100%;
+    padding: 10px; /* Reduzido para ganhar mais espaço */
+}
+
+/* Título */
 h2 {
     color: #000;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Reduzido para economizar espaço */
     text-align: center;
-    position: relative;
-    padding-bottom: 10px;
 }
 
-
+/* Campos do formulário */
 .campo {
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Reduzido para evitar muito espaço vertical */
 }
 
 .campo label {
@@ -60,18 +65,19 @@ h2 {
 .campo select,
 .campo textarea {
     width: 100%;
-    padding: 15px; /*alteracao de 10 para 15, assim as caixas de inserir valor ficaram maiores*/
+    padding: 8px; /* Reduzido o padding para ocupar menos espaço vertical */
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
-    box-sizing: border-box; /** Inserido: Nao deixa o padding e border ultrapassarem o container pai 'product-registration-container'*/
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
 .campo textarea {
     resize: none;
-    height: 100px;
+    height: 70px; /* Reduzido para que o textarea ocupe menos espaço */
 }
 
+/* Botão de adicionar */
 .btn-adicionar {
     width: 100%;
     padding: 10px;
@@ -79,40 +85,28 @@ h2 {
     border: none;
     border-radius: 4px;
     color: white;
-    font-size: 16px;
+    font-size: 14px; /* Reduzido para caber melhor */
     cursor: pointer;
-    box-sizing: border-box; /* Inserido: Nao deixa o padding e border ultrapassarem o container pai 'product-registration-container'*/
 }
 
 .btn-adicionar:hover {
     background-color: #e0542b;
 }
 
-/* Inserido:*/
-@media (max-width: 600px) { /*regras serao aplicadas quando a largura for menor ou igual que 600px*/
-    select {
-        width: 100%; /*vai ocupar 100% da largura disponivel*/
-        font-size: 30px; /* Tamanho de fonte um pouco menor para caber bem */
-        padding: 25px; /* Padding ajustado */
-    }
-}
-
-/*Nav Bar: Barra de navegacao*/
-.navbar{
-    position: fixed; /*nao altera a posicao*/
+/* Barra de Navegação */
+.navbar {
+    position: fixed;
     top: 0;
+    left: 0;
     right: 0;
     background-color: #f06530;
     color: #ffffff;
-    width: 100%;
     padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    justify-content: space-between;
     z-index: 1000;
 }
-
 
 .navbar-toggler {
     background: none;
@@ -131,12 +125,8 @@ h2 {
     border-radius: 3px;
 }
 
-.navbar-collapse { /*aqui fez o humburguer aparecer e esconder os links*/
-    display: none; /*ver esse no chat*/
-    top: 50px;
-    right: 0;
-    background-color: none;
-    width: 200px;
+.navbar-collapse {
+    display: none;
 }
 
 .navbar-nav {
@@ -149,8 +139,6 @@ h2 {
     padding: 10px;
 }
 
-
-/* Estilizando o clicavel das opcoes no navbar*/
 .navbar-nav a {
     color: #fff;
     text-decoration: none;
@@ -159,9 +147,28 @@ h2 {
 }
 
 .navbar-nav a:hover {
-    color: #150f0f; /* Garante que o texto fique visível */
+    color: #150f0f;
     transition: background-color 0.3s ease;
 }
 
+/* Ajustes para Telas Grandes */
+@media (min-width: 768px) {
+    .product-registration-container {
+        max-width: 900px; /* Ajuste para que ocupe mais espaço nas telas grandes */
+    }
 
-/*A FAZER: deixar altura responsiva */
+    .product-registration-box {
+        width: 100%;
+        padding: 15px; /* Padding maior em telas grandes */
+    }
+
+    .campo input, .campo select, .campo textarea {
+        font-size: 16px;
+        padding: 10px; /* Padding maior para melhorar a experiência em telas grandes */
+    }
+
+    .btn-adicionar {
+        font-size: 16px;
+        padding: 10px;
+    }
+}

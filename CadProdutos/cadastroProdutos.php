@@ -55,14 +55,12 @@
             </ul>
         </div>
     </div>
-    <script src="./scriptProdutos.js"></script>
-
-
+    
+<div class="container">
     <div class="product-registration-container">
-
         <div class="product-registration-box">
             <h2>Cadastro de novo produto</h2>
-            <form action="salvarProduto.php" method="POST">
+            <form action="salvarProduto.php" method="POST" enctype="multipart/form-data">
                 <div class="campo">
                 <label for="id_categoria">Categoria:</label>
                 <select id="id_categoria" name="id_categoria" required>
@@ -71,11 +69,19 @@
             </div>
                 <div class="campo">
                     <label for="produto">Produto</label>
-                    <input type="text" id="produto" name="produto" placeholder="nome produto" required>
+                    <input type="text" id="produto" name="nome_produto" placeholder="nome produto" required>
                 </div>
                 <div class="campo">
                     <label for="descricao">Descrição do produto</label>
                     <textarea id="descricao" name="descricao" placeholder="descrição do novo produto" required></textarea> <!--tag q permite varias linhas de texto-->
+                </div>
+                <div class="campo">
+                    <label for="preco_produto">Preço:</label>
+                    <input type="number" step="0.01" id="preco_produto" name="preco_produto" required><br><br>
+                </div>
+                <div class="campo">
+                     <label for="qtd_estoque">Quantidade em Estoque:</label>
+                     <input type="number" id="qtd_estoque" name="qtd_estoque" required><br><br>
                 </div>
                 <div>
                     <label for="foto"> Escolha a foto do produto:</label>
@@ -88,5 +94,7 @@
             </form>
         </div>
     </div>
+</div>
+    <script src="./scriptProdutos.js"></script>
 </body>
 </html>
