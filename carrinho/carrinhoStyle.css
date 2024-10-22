@@ -1,0 +1,25 @@
+/*casinha  e humburguer*/
+.humburguer, .home{
+    color: #181717;
+    border: none;
+    background-color: transparent;
+    cursor: pointer; /*quando passar o mause em cima, fica com a maozinha no mause*/
+}
+.humburguer{
+    font-size: 30px;
+}
+
+.home{
+    font-size: 25px;
+}
+
+#icones{
+    top: 10px; /*distancia do topo da tela*/
+    right: 10px; /*distancia da direita da tela*/
+    position: fixed;
+    align-items: flex-start;   }
+
+.SIDE-BAR{
+        display:none; 
+        right:0;
+    }
