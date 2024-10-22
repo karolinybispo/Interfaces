@@ -14,7 +14,7 @@
             <input type="text" placeholder="pesquise">
             <div class="logo">
                
-                <img src="logo_uninga.png" alt="Uninga">
+                <img src="./Logo-Uninga-Alta.png" alt="Uninga">
             </div>
         </div>
         <nav>
@@ -33,10 +33,10 @@
         <section class="sugestoes">
             <h2>Sugestões do dia</h2>
             <div id="app" class="produto-lista"> <!--vue inicia aqui-->
-                <div class="produto"> <!-- produtos serao renderizados na estrutura dessa div-->
-                    <img :src="produto.foto" :alt="produto.nome">
-                    <h3>{{produto.nome}}</h3>
-                    <p>R$ {{produto.preco}}</p>
+                <div v-for="produto in produtos" :key="produto.id" class="produto"> <!-- produtos serao renderizados na estrutura dessa div-->
+                    <img :src="produto.img_produto" alt="imagem do produto">
+                    <h3>{{produto.nome_produto}}</h3>
+                    <p>R$ {{produto.preco_produto}}</p>
                     <div class="quantidade">
                         <input type="number" v-model.number="produto.quantidade" min="1">
                     </div>
@@ -49,18 +49,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!--axios-->
     <script>
-        const app = Vue.creatApp 
+        const app = Vue.createApp 
         ({
                 data(){
                     return{
-                        produtos: [] // inicializa lista de produtos
+                        produtos: [], // inicializa lista de produtos
+                        erro: '' //armazena erros se houver
                     };
                 },
                 methods: {
                     async fetchProdutos(){
                         try{
-                            const response = await axios.get(buscarProdutos.php);
-                            this.produtos = response.data; // php retornou um array de produtos
+                            const response = await axios.get('interfaces/cardapio/buscarProdutos.php');
+                            this.produtos = response.data; // os dados recebidos sao passados para this.produtos
                         } catch (error) {
                       this.erro = 'Ocorreu um erro ' + error.message;
                             }   
