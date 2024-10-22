@@ -2,9 +2,13 @@
 // Incluir conexão com o banco de dados
 include '../conexaoBanco/db_conexao.php';
 
+// Consulta para buscar as categorias do banco de dados
+$sql_categoria = "SELECT nome_categoria FROM categoria";
+$result_categoria = mysqli_query($conn, $sql_categoria);
+
 // Consulta para buscar os produtos do banco de dados
-$sql = "SELECT * FROM produto"; // Certifique-se de que o nome da tabela e dos campos estão corretos
-$result = mysqli_query($conn, $sql);
+$sql_produto = "SELECT * FROM produto";
+$result_produto = mysqli_query($conn, $sql_produto);
 ?>
 
 <!DOCTYPE html>
@@ -25,11 +29,12 @@ $result = mysqli_query($conn, $sql);
         </div>
         <nav>
             <ul>
-                <li>Bebidas</li>
-                <li>Salgados</li>
-                <li>Sobremesas</li>
-                <li>Prato feito</li>
-                <li>Lanches</li>
+                <?php 
+                // Preencher dinamicamente as categorias na barra de navegação
+                while ($categoria = mysqli_fetch_assoc($result_categoria)) {
+                    echo '<li>' . htmlspecialchars($categoria['nome_categoria']) . '</li>';
+                }
+                ?>
             </ul>
         </nav>
     </header>
@@ -38,13 +43,14 @@ $result = mysqli_query($conn, $sql);
         <section class="sugestoes">
             <h2>Sugestões do dia</h2>
             <div class="produto-lista">
-                <?php while ($produto = mysqli_fetch_assoc($result)) { ?>
+                <?php while ($produto = mysqli_fetch_assoc($result_produto)) { ?>
                     <div class="produto">
-                        <img src="<?php echo $produto['foto']; ?>" alt="<?php echo $produto['nome_produto']; ?>">
-                        <h3><?php echo $produto['nome_produto']; ?></h3>
+                    <img src="../CadProdutos/<?php echo htmlspecialchars($produto['foto']); ?>" alt="<?php echo htmlspecialchars($produto['nome_produto']); ?>">
+
+                       <h3><?php echo htmlspecialchars($produto['nome_produto']); ?></h3>
                         <p>R$ <?php echo number_format($produto['preco_produto'], 2, ',', '.'); ?></p>
                         <div class="quantidade">
-                            <input type="number" name="quantidade" value="1" min="1" max="<?php echo $produto['qtd_estoque']; ?>">
+                            <input type="number" name="quantidade" value="1" min="1" max="<?php echo htmlspecialchars($produto['qtd_estoque']); ?>">
                         </div>
                         <button>Adicionar</button>
                     </div>
