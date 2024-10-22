@@ -23,3 +23,20 @@
         display:none; 
         right:0;
     }
+
+.alinhamento{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }    
+.pagamento{
+        background-color: #FFFFFF;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /*efeito de div saindo para fora*/
+        border-radius: 5px; /*arrendondamento*/
+        width: 100%;
+        max-width: 600px;
+        text-align: center; /*texto que esta dentro da div ficou alinhado*/
+        font-weight: bold; /*fonte mais forte*/
+        margin-top: 50px; /*margem em relacao a parte de cima*/
+    }
