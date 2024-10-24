@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho</title>
+    <title>Itens no carrinho</title>
     <link rel="stylesheet" href="./carrinhoStyle.css">
 
      <!--Link para usar o icon da casinha, CDN da Font Awesome-->
@@ -38,29 +38,29 @@
     </header>
 
     <main>
-        <div class="alinhamento"> <!--div que defini como todos vao ficar na pg. Div pai-->
+        <div id="app" class="alinhamento"> <!--div que defini como todos vao ficar na pg. Div pai-->
             <div class="pagamento"> <!-- estiliza a div com titulo pagamento-->
-                <h1> Pagamento </h1>
+                <h1> Itens no carrinho </h1>
             </div>
-            
+            <div 
+                v-if="carrinho.length === 0">O carrinho está vazio.
+            </div>
+            <div v-for="item in carrinho" :key="item.id_produto">
+                <p>{{ item.nome_produto }} - Quantidade: {{ item.quantidade }} - Preço: R$ {{ item.preco_produto }}</p>
+                 <button type="button" @click="removerDoCarrinho(item.id_produto)">Remover</button>
+             </div>
+             <div v-if="carrinho.length > 0">
+                <h3>Total: R$ {{ total }}</h3>
+                <button type="button" @click="finalizarPedido">Finalizar Pedido</button>
+             </div>
+          
+
 
         </div>
     </main>
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
     <script>
         function w3_open() {
             document.getElementById("mySidebar").style.display = "block";
@@ -69,6 +69,64 @@
         function w3_close() {
             document.getElementById("mySidebar").style.display = "none";
         }
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                carrinho: []
+        };
+      },
+    computed: {
+        total() {
+          return this.carrinho.reduce((acc, item) => acc + (item.preco_produto * item.quantidade), 0);
+        }
+      },
+    created() {
+        this.carregarCarrinho();
+      },
+    methods: {
+        carregarCarrinho() {
+          const carrinhoSalvo = localStorage.getItem('carrinho');
+          if (carrinhoSalvo) {
+            this.carrinho = JSON.parse(carrinhoSalvo);
+          }
+        },
+    salvarCarrinho() {
+          localStorage.setItem('carrinho', JSON.stringify(this.carrinho));
+        },
+    removerDoCarrinho(id_produto) {
+          this.carrinho = this.carrinho.filter(item => item.id_produto !== id_produto);
+          this.salvarCarrinho();
+        },
+    finalizarPedido() {
+          // Aqui você pode adicionar a lógica para enviar o pedido ao servidor
+          this.carrinho = [];
+          this.salvarCarrinho();
+          window.location.href = 'interfaces/pagamento/pag.html';
+        }
+      }
+    });
+
+    app.mount('#app');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </script>
 
 
