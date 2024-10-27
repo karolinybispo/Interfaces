@@ -58,9 +58,11 @@
 
         </div>
     </main>
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!--axios-->
+    
     <script>
         function w3_open() {
             document.getElementById("mySidebar").style.display = "block";
@@ -99,10 +101,26 @@
           this.salvarCarrinho();
         },
     finalizarPedido() {
-          // Aqui você pode adicionar a lógica para enviar o pedido ao servidor
-          this.carrinho = [];
-          this.salvarCarrinho();
-          window.location.href = '/interfaces/pagamento/pag.html'; // redireciona para a pagina pag.html
+      const dadosPedidos = {
+          itens: this.carrinho,
+          total: this.total  
+        };
+          axios.post('http://localhost/interfaces/carrinho/pedidoBanco.php', dadosPedido)
+          .then(response => {
+            if(response.data.sucess){
+              this.carrinho = []; //limpa carrinho local
+              this.salvarCarrinho(); //atualiza o localStorege
+              alert('Pedido enviado ao banco');
+              window.location.href = '/interfaces/pagamento/pag.html'; // redireciona para a pagina pag.html
+              }
+              else {
+                alert('Erro ao finalizar pedido.');
+                  }
+          })
+          .catch(error => {
+            console.error('erro ao enviar ao servidor', error);
+            alert('erro ao finalizar pedido');
+          })
         }
       }
     });

@@ -32,26 +32,48 @@
                      </button> 
                             </a>
         </div>
-
-<div class="alinhamento">
+<div id="app">
+<div  class="alinhamento">
     <div class="pagamento">
         <h1> Pagamento </h1>
     </div>
     <div class="container">
             <p class="val">Valor total: </p>
     
-        <p class="valor-total">R$ valor vai vir do back</p>
+        <p class="valor-total">itens: </p>
     
     <div class="container-img-pix">
         <img src="./pix.png" alt="">
         <div>
-            <p class="pix">C834T8NDXYE17<br>BRVETOX74R</p>
+            <p class="pix">COPIAR CODIGO<br>C834T8NDXYE1<br>FNFNDIOONC70<br>BRVETOX74a1R</p>
         </div>
     </div>
     <p class="text-final">Assim que for efetuado o pagamento, você receberá o voucher</p>
     </div>
 </div>
+</div>
 
-    <script src="./pagamentoScript.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+  
+         function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+         }
+
+        const app = Vue.createApp({
+            mounted() {
+                // Redireciona após 5 segundos
+                    setTimeout(() => {
+                   // window.location.href = '../compraAprovada/aprovada.html';
+                }, 5000); // Tempo em milissegundos (5000ms = 5s)
+            }
+        });
+
+        app.mount('#app');
+    </script>
 </body>
 </html>
