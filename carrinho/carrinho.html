@@ -111,14 +111,16 @@ async finalizarPedido() { //informa que eh uma funcao assincrona.
               pagamento_pedido: "pix",
               itens: this.carrinho
             };
+            // aqui ve como a estrutura do json
+            //console.log("Dados do pedido que serão enviados:", JSON.stringify(pedido, null, 2));
 
-            //envia o que esta dentro de pedido ao back
+            //envia o que esta dentro de "pedido" ao back
             const response = await axios.post('/interfaces/carrinho/pedidoBanco.php', pedido);
             
             if(response.data.success){
               this.carrinho =[];
               this.salvarCarrinho();
-              window.location.href = '/interfaces/pagamento/pag.html';
+              window.location.href = '/interfaces/pagamento/pag.html'; //leva o user para pag.html
             }
             else{
               console.error("erro ao finalizar", response.data.message);
@@ -132,25 +134,6 @@ async finalizarPedido() { //informa que eh uma funcao assincrona.
     });
 
     app.mount('#app');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </script>
 
 

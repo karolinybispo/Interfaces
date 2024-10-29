@@ -13,7 +13,7 @@
 
     //extrair dados principais do pedido
     $id_cliente = $data['id_cliente'];
-    $pag_pedido = $data['pag_pedido'];
+    $pag_pedido = $data['pagamento_pedido'];
     $itens = $data['itens'];
 
     //inclui transacao para garantir consistencia de dados
@@ -30,9 +30,10 @@
 
     //inserir cada item na tabela ITENS
     $total_pedido = 0;
-    $sql_item = $mySqli->prepare("INSERT INTO tb_itens(id_pedido, id_produto, qtd_item, preco_unita_item, sub_total) VALUES (?,?,?,?,?)");
+    $sql_item = $mySqli->prepare("INSERT INTO tb_itens (id_pedido, id_produto, qtd_item, preco_unita_item, sub_total) VALUES (?,?,?,?,?)");
 
-    foreach ($itens as $item) {
+    foreach ($itens as $item) 
+    {
         $id_produto = $item[ 'id_produto'];
         $quantidade = $item ['quantidade'];
         $preco_unita_item = $item['preco_produto'];
@@ -41,7 +42,6 @@
         $total_pedido += $sub_total;
 
         //inserir no banco
-
         $sql_item->bind_param("iiidd", $id_pedido, $id_produto, $quantidade, $preco_unita_item, $sub_total);
         $sql_item->execute();
     }
