@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperação de Senha</title>
+<<<<<<< HEAD
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="recuperarSenhaStyle.css">
 </head>
@@ -19,10 +20,27 @@
                 <div class="campo">
                     <button  @click="validarEmail"   type="submit" class="btn-recuperar">Enviar</button>
                     <p v-if="erro">{{ erro }}</p>
+=======
+    <link rel="stylesheet" href="recuperarSenha.css">
+</head>
+<body>
+    <div class="password-recovery-container">
+        <div class="password-recovery-box">
+            <h2>Recuperar Senha</h2>
+            <p>insira seu e-mail para receber as instruções de recuperação de senha.</p>
+            <form action="#" method="POST">
+                <div class="campo">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="campo">
+                    <button type="submit" class="btn-recuperar">Enviar</button>
+>>>>>>> novaRe
                 </div>
                 <div class="campo">
                     <button type="button" class="btn-voltar" onclick="window.location.href='../loginUsuario/loginUsuario.html'">Voltar ao Login</button>
                 </div>
+<<<<<<< HEAD
         </div>
         <div class="password-recovery-box"  v-if="emailValidado">
             <h3>E-mail validado, altere sua senha</h3>
@@ -90,5 +108,10 @@
   
         app.mount("#app");
       </script>
+=======
+            </form>
+        </div>
+    </div>
+>>>>>>> novaRe
 </body>
 </html>

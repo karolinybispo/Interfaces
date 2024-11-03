@@ -16,7 +16,11 @@ body {
     justify-content: center; /*Insercao: alinha todos os itens filhos horizontalmente no centro, no espaco que estiver disponivel para eles*/ 
     align-items: center; /*Insercao: alinha todos os itens filhos verticalmente no centro. Aqui eles ficarao centralizados na altura do container pai*/
     text-align: center;
+<<<<<<< HEAD
     width: 100%; /*define que o container vai ocupar 100% de todo largura disponovel que ela tiver, se for 800px, sera 100% desse espaco total, se for 20px de largura, sera 100% desses 20px de largura*/
+=======
+    width: 80%; /*define que o container vai ocupar 100% de todo largura disponovel que ela tiver, se for 800px, sera 100% desse espaco total, se for 20px de largura, sera 100% desses 20px de largura*/
+>>>>>>> novaRe
     max-width: 800px; /*alteracao: largura maxima de 600 foi para 800, assim ficou maior essa div. A max-width define a largura maxima que esse container deve ter quando estiver em telas bemm grandes. Resumindo, eh o limite maximo para que o container nao se expanda demais em espacos grandes*/
     margin: 0 auto;
     overflow: auto; /* Insercao: Para permitir rolagem se o conteúdo exceder a altura máxima */

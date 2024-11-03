@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itens no carrinho</title>
+    <link rel="stylesheet" href="./carrinhoStyle.css">
+
+     <!--Link para usar o icon da casinha, CDN da Font Awesome-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+     <!--W3 shocool para barra de navegacao com humbuguer-->
+     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+    <header>
+
+        <!-- Barra de navegacao --> <!--nessa barra de navegacao foi adc itens da barra de navegacao da direita na parte "Left & Right Side Navigation" do w3 que apresenta css do proprio w3 (W3.CSS) para navbar-->
+        <div class="w3-sidebar w3-bar-block w3-card w3-animate-right SIDE-BAR" id="mySidebar"> <!-- esse id sera usado no js como referencia de onde a funcao vai ser executado-->
+        <button onclick="w3_close()" type="button" class="w3-bar-item w3-button w3-large">Close &times;</button> <!--botao close que fica junto com o sidebar-->
+        <a href="#" class="w3-bar-item w3-button">Link 1</a>
+        <a href="#" class="w3-bar-item w3-button">Link 2</a>
+        <a href="#" class="w3-bar-item w3-button">Link 3</a>
+        </div>
+
+        <div id="icones">
+            <!-- Icone botao humburguer-->
+            <button class="humburguer" type="button" onclick="w3_open()"> ☰ </button>   <!-- Ao ser apertado a funcao "w3_open()" que abre o side bar eh chamado e fica visivel-->
+            <!--Icone Casinha-->
+            <a href="/cardapio/cardapio.html"> 
+                <button type="button" class="home" aria-label="home"> <!--Botao interativo que o user clica. A tag <a> encaminha o user a pagina no href-->
+                    <i class="fa-solid fa-house"></i>   <!-- 'i' renderiza icones -->
+                </button> 
+             </a>
+        </div>
+
+    </header>
+
+    <main>
+        <div id="app" class="alinhamento"> <!--div que defini como todos vao ficar na pg. Div pai-->
+            <div class="pagamento"> <!-- estiliza a div com titulo pagamento-->
+                <h1> Itens no carrinho </h1>
+            </div>
+            <div 
+                v-if="carrinho.length === 0">O carrinho está vazio.
+            </div>
+            <div v-for="item in carrinho" :key="item.id_produto">
+                <p>{{ item.nome_produto }} - Quantidade: {{ item.quantidade }} - Preço: R$ {{ item.preco_produto }}</p>
+                 <button type="button" @click="removerDoCarrinho(item.id_produto)">Remover</button>
+             </div>
+             <div v-if="carrinho.length > 0">
+                <h3>Total: R$ {{ total }}</h3>
+                <button type="button" @click="finalizarPedido">Finalizar Pedido</button>
+             </div>
+          
+
+
+        </div>
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!--axios-->
+    
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+         }
+  
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                carrinho: []
+        };
+      },
+    computed: {
+        total() {
+          return this.carrinho.reduce((acc, item) => acc + (item.preco_produto * item.quantidade), 0);
+        }
+      },
+    created() {
+        this.carregarCarrinho();
+      },
+    methods: {
+        carregarCarrinho() {
+          const carrinhoSalvo = localStorage.getItem('carrinho');
+          if (carrinhoSalvo) {
+            this.carrinho = JSON.parse(carrinhoSalvo);
+          }
+        },
+    salvarCarrinho() {
+          localStorage.setItem('carrinho', JSON.stringify(this.carrinho));
+        },
+    removerDoCarrinho(id_produto) {
+          this.carrinho = this.carrinho.filter(item => item.id_produto !== id_produto);
+          this.salvarCarrinho();
+        },
+    
+async finalizarPedido() { //informa que eh uma funcao assincrona.
+          try{
+
+            const idCliente = localStorage.getItem('id_cliente'); //pega o id do cliente que entrou no sistema
+
+            const pedido = {
+              id_cliente: idCliente,
+              pagamento_pedido: "pix",
+              itens: this.carrinho
+            };
+            // aqui ve como a estrutura do json
+            //console.log("Dados do pedido que serão enviados:", JSON.stringify(pedido, null, 2));
+
+            //envia o que esta dentro de "pedido" ao back
+            const response = await axios.post('/interfaces/carrinho/pedidoBanco.php', pedido);
+            
+            if(response.data.success){
+              this.carrinho =[];
+              this.salvarCarrinho();
+              window.location.href = '/interfaces/pagamento/pag.html'; //leva o user para pag.html
+            }
+            else{
+              console.error("erro ao finalizar", response.data.message);
+            }
+        }
+        catch ( error ) {
+          console.error('erro na rede', error);
+        }
+        }
+      }
+    });
+
+    app.mount('#app');
+    </script>
+
+
+
+</body>
+</html>

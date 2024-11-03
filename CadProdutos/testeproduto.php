@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produtos</title>
+    <script>
+        // Função para buscar as categorias via AJAX
+        function buscarCategorias() {
+            // Faz a requisição para o arquivo PHP
+            fetch('buscarCategorias.php')
+                .then(response => response.json()) // Converte a resposta para JSON
+                .then(categorias => {
+                    let selectCategoria = document.getElementById("id_categoria");
+                    
+                    // Limpa o select antes de adicionar as categorias
+                    selectCategoria.innerHTML = '';
+                    
+                    // Itera sobre as categorias e as adiciona ao select
+                    categorias.forEach(categoria => {
+                        let option = document.createElement("option");
+                        option.value = categoria.id_categoria;
+                        option.text = categoria.nome_categoria;
+                        selectCategoria.add(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar as categorias:', error);
+                });
+        }
+
+        // Chama a função assim que a página carrega
+        window.onload = function() {
+            buscarCategorias();
+        };
+    </script>
+
+<link rel="stylesheet" href="cadastroProdutos.css"> 
+</head>
+<body>
+
+<h1>Cadastrar Produto</h1>
+<form action="salvarProduto.php" method="POST">
+    <label for="id_categoria">Categoria:</label>
+    <select id="id_categoria" name="id_categoria" required>
+        <!-- As opções serão preenchidas dinamicamente -->
+    </select><br><br>
+
+    <label for="nome_produto">Nome do Produto:</label>
+    <input type="text" id="nome_produto" name="nome_produto" required><br><br>
+
+    <label for="descricao">Descrição:</label>
+    <textarea id="descricao" name="descricao" required></textarea><br><br>
+
+    <label for="preco_produto">Preço:</label>
+    <input type="number" step="0.01" id="preco_produto" name="preco_produto" required><br><br>
+
+    <label for="qtd_estoque">Quantidade em Estoque:</label>
+    <input type="number" id="qtd_estoque" name="qtd_estoque" required><br><br>
+
+    <button type="submit">Cadastrar Produto</button>
+</form>
+
+</body>
+</html>
