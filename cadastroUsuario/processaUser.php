@@ -8,8 +8,8 @@
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
          include '../conexaoBanco/db_conexao.php'; 
-               if ($mySqli->connect_error) { 
-                  echo "Erro na conexão: " . $mySqli->connect_error; 
+               if ($conn->connect_error) { 
+                  echo "Erro na conexão: " . $conn->connect_error; 
     }
    
        //recebendo valores dos inputs
@@ -20,7 +20,7 @@
         $senha = $_POST ['senhaInput'];
 
        //preparando insersao de dados
-         $sql = $mySqli->prepare("INSERT INTO tb_clientes (nome_cliente, CPF_cliente, telefone_cliente, email_cliente, senha)
+         $sql = $conn->prepare("INSERT INTO tb_clientes (nome_cliente, cpf_cliente, telefone_cliente, email_cliente, senha_cliente)
                        VALUES (?,?,?,?,?)");
          $sql->bind_param("sssss", $nome, $CPF, $telefone, $email, $senha);
         
@@ -45,7 +45,7 @@
         }
         
         $sql->close();
-        $mySqli->close();      
+        $conn->close();      
       }  
    ?>
 
