@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itens no carrinho</title>
+    <title>Carrinho</title>
     <link rel="stylesheet" href="./carrinhoStyle.css">
 
      <!--Link para usar o icon da casinha, CDN da Font Awesome-->
@@ -40,7 +40,7 @@
     <main>
         <div id="app" class="alinhamento"> <!--div que defini como todos vao ficar na pg. Div pai-->
             <div class="pagamento"> <!-- estiliza a div com titulo pagamento-->
-                <h1> Itens no carrinho </h1>
+                <h1> Carrinho </h1>
             </div>
             <div 
                 v-if="carrinho.length === 0">O carrinho está vazio.
@@ -102,27 +102,29 @@
         },
     
 async finalizarPedido() { //informa que eh uma funcao assincrona.
-          try{
+            try{
 
             const idCliente = localStorage.getItem('id_cliente'); //pega o id do cliente que entrou no sistema
 
             const pedido = {
               id_cliente: idCliente,
+              total: this.total,
               pagamento_pedido: "pix",
               itens: this.carrinho
             };
-            // aqui ve como a estrutura do json
+            // VENDO A estrutura do json
             //console.log("Dados do pedido que serão enviados:", JSON.stringify(pedido, null, 2));
 
             //envia o que esta dentro de "pedido" ao back
             const response = await axios.post('/interfaces/carrinho/pedidoBanco.php', pedido);
-            
+            console.log(response)
+
             if(response.data.success){
               this.carrinho =[];
               this.salvarCarrinho();
-              window.location.href = '/interfaces/pagamento/pag.html'; //leva o user para pag.html
+              window.location.href = '/interfaces/pagamento/pag.html'; //leva o user para pagia de pagamento: pag.html
             }
-            else{
+            else {
               console.error("erro ao finalizar", response.data.message);
             }
         }
