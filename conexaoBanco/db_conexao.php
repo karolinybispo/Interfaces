@@ -1,10 +1,10 @@
 <?php
-$nomeServer = "localhost"; //servidor do banco de dados
-$userServer = "root"; //usuario mysql
-$senhaServer= "";
-$nomeBanco = "cantina";
+$servername = "localhost"; //servidor do banco de dados
+$username = "root"; //usuario mysql
+$password= "";
+$dbname = "cantina";
 
-$mySqli = new mysqli($nomeServer, $userServer, $senhaServer, $nomeBanco);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 ?>
 
