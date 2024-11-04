@@ -6,7 +6,7 @@
     <!--garante responsividade para dispositivos moveis-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <!-- titulo da pagina na aba do navegador-->
-    <title>Cadastro do usurario</title> 
+    <title>Cadastro de novo usurario</title> 
     <!-- vinculo o css externo utilizado para estilizar o html-->
     <link rel="stylesheet" href="cadastroUsuario.css"> 
 
@@ -16,25 +16,27 @@
     <div class="form-container">
         <!-- titulo do formulario-->
         <h2>Cadastro</h2> 
+
         <!-- inicia o formulario com metodo e action para indicar para onde sera enviado-->
-        <form action="#" method="POST">
+        <form action="processaUser.php" method="POST">
+          
             <!-- cria um elemento div com a classe campo para personalizar os campos--> 
             <div class="campo"> 
                 <!--cria um campo input com name e placeholder mostra a palavra que ficara a mostra-->
                 <!-- required torna o preenchimento obrigatorio-->
-                <input type="text" name="nome" placeholder="nome" required> 
+                <input type="text" name="nomeInput" placeholder="nome" required> 
             </div>                                                          
             <div class="campo">
-                <input type="text" name="cpf" placeholder="CPF" required>
+                <input type="text" name="cpfInput" placeholder="CPF" required>
             </div>
             <div class="campo">
-                <input type="tel" name="telefone" placeholder="telefone" required>
+                <input type="text" name="telefoneInput" placeholder="telefone" required>
             </div>
             <div class="campo">
-                <input type="email" name="email" placeholder="e-mail" required>
+                <input type="email" name="emailInput" placeholder="e-mail" required>
             </div>
             <div class="campo">
-                <input type="password" name="senha" placeholder="senha" required>
+                <input type="password" name="senhaInput" placeholder="senha" required>
             </div>
             <div class="campo">
                 <!--botão do tipo submit para enviar o formulario-->

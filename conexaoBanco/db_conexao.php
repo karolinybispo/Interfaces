@@ -1,14 +1,12 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cantina"; // Substitua pelo nome do seu banco de dados
+$nomeServer = "localhost"; //servidor do banco de dados
+$userServer = "root"; //usuario mysql
+$senhaServer= "";
+$nomeBanco = "cantina";
 
-// Criando a conexão com o banco de dados
-$conn = new mysqli($servername, $username, $password, $dbname);
+$mySqli = new mysqli($nomeServer, $userServer, $senhaServer, $nomeBanco);
 
-// Verificando a conexão
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
-} 
 ?>
+
+
+
