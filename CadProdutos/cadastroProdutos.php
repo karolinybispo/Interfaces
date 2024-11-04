@@ -50,7 +50,7 @@
             <ul class="navbar-nav">
                 <li><a href="../cadastroCategoria/cadCategoria.php">Cadastro de categoria</a></li>
                 <li><a href="relatorio.html">Relatorios</a></li>
-                <li><a href="pedidosOnline.html">Pedidos online</a></li>
+                <li><a href="../TelaPedidosEmpresa/Pedidos.php">Pedidos online</a></li>
               
             </ul>
         </div>

@@ -1,15 +1,5 @@
 <?php
-// Incluir conexão com o banco de dados
 include '../conexaoBanco/db_conexao.php';
-
-// Consulta para buscar os pedidos do banco de dados
-$sql_pedidos = "SELECT * FROM pedido";
-$result_pedidos = mysqli_query($conn, $sql_pedidos);
-
-// Testar se a consulta retornou resultados
-if (!$result_pedidos) {
-    die("Erro na consulta SQL: " . mysqli_error($conn));
-}
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +7,7 @@ if (!$result_pedidos) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Pedidos </title>
+    <title>Gerenciamento de Pedidos - Kanban</title>
     <link rel="stylesheet" href="kanban.css">
 </head>
 <body>
@@ -31,127 +21,80 @@ if (!$result_pedidos) {
         </ul>
     </nav>
 
-    <h1>Gerenciamento de Pedidos </h1>
+    <h1>Gerenciamento de Pedidos - Kanban</h1>
     <div class="kanban-board">
-        <!-- Coluna "A Fazer" -->
         <div class="kanban-column">
             <h2>A Fazer</h2>
-            <div class="kanban-items" id="a-fazer">
-                <?php
-                mysqli_data_seek($result_pedidos, 0);
-                while ($pedido = mysqli_fetch_assoc($result_pedidos)) {
-                    if ($pedido['status'] == 'A fazer') {
-                        echo '<div class="kanban-item" data-id="' . $pedido['id_pedido'] . '">';
-                        echo '<h3>Pedido #' . $pedido['id_pedido'] . '</h3>';
-                        echo '<p>Cliente ID: ' . $pedido['id_cliente'] . '</p>';
-                        echo '<p>Valor Total: R$ ' . number_format($pedido['total_pedido'], 2, ',', '.') . '</p>';
-
-                        // Consultar itens do pedido
-                        $sql_itens = "SELECT i.qtd, i.preco_unita_item, i.sub_total, p.nome_produto 
-                                      FROM itens i
-                                      JOIN produto p ON i.id_produtos = p.id_produto
-                                      WHERE i.id_pedido = " . $pedido['id_pedido'];
-                        $result_itens = mysqli_query($conn, $sql_itens);
-
-                        // Exibir itens do pedido com a nova formatação
-                        echo '<ul>';
-                        while ($item = mysqli_fetch_assoc($result_itens)) {
-                            echo '<li><strong>' . $item['nome_produto'] . '</strong> - Quantidade: ' . $item['qtd'] . '<br>';
-                            echo 'Preço Unitário: R$ ' . number_format($item['preco_unita_item'], 2, ',', '.') . ' - Subtotal: R$ ' . number_format($item['sub_total'], 2, ',', '.') . '</li>';
-                        }
-                        echo '</ul>';
-
-                        echo '<button onclick="mudarStatus(' . $pedido['id_pedido'] . ', \'Fazendo\')">Iniciar</button>';
-                        echo '</div>';
-                    }
-                }
-                ?>
-            </div>
+            <div class="kanban-items" id="a-fazer"></div>
         </div>
-
-        <!-- Coluna "Fazendo" -->
         <div class="kanban-column">
             <h2>Fazendo</h2>
-            <div class="kanban-items" id="fazendo">
-                <?php
-                mysqli_data_seek($result_pedidos, 0);
-                while ($pedido = mysqli_fetch_assoc($result_pedidos)) {
-                    if ($pedido['status'] == 'Fazendo') {
-                        echo '<div class="kanban-item" data-id="' . $pedido['id_pedido'] . '">';
-                        echo '<h3>Pedido #' . $pedido['id_pedido'] . '</h3>';
-                        echo '<p>Cliente ID: ' . $pedido['id_cliente'] . '</p>';
-                        echo '<p>Valor Total: R$ ' . number_format($pedido['total_pedido'], 2, ',', '.') . '</p>';
-
-                        // Consultar itens do pedido com a nova formatação
-                        $sql_itens = "SELECT i.qtd, i.preco_unita_item, i.sub_total, p.nome_produto 
-                                      FROM itens i
-                                      JOIN produto p ON i.id_produtos = p.id_produto
-                                      WHERE i.id_pedido = " . $pedido['id_pedido'];
-                        $result_itens = mysqli_query($conn, $sql_itens);
-
-                        echo '<ul>';
-                        while ($item = mysqli_fetch_assoc($result_itens)) {
-                            echo '<li><strong>' . $item['nome_produto'] . '</strong> - Quantidade: ' . $item['qtd'] . '<br>';
-                            echo 'Preço Unitário: R$ ' . number_format($item['preco_unita_item'], 2, ',', '.') . ' - Subtotal: R$ ' . number_format($item['sub_total'], 2, ',', '.') . '</li>';
-                        }
-                        echo '</ul>';
-
-                        echo '<button onclick="mudarStatus(' . $pedido['id_pedido'] . ', \'Feito\')">Concluir</button>';
-                        echo '</div>';
-                    }
-                }
-                ?>
-            </div>
+            <div class="kanban-items" id="fazendo"></div>
         </div>
-
-        <!-- Coluna "Feito" -->
         <div class="kanban-column">
             <h2>Feito</h2>
-            <div class="kanban-items" id="feito">
-                <?php
-                mysqli_data_seek($result_pedidos, 0);
-                while ($pedido = mysqli_fetch_assoc($result_pedidos)) {
-                    if ($pedido['status'] == 'Feito') {
-                        echo '<div class="kanban-item" data-id="' . $pedido['id_pedido'] . '">';
-                        echo '<h3>Pedido #' . $pedido['id_pedido'] . '</h3>';
-                        echo '<p>Cliente ID: ' . $pedido['id_cliente'] . '</p>';
-                        echo '<p>Valor Total: R$ ' . number_format($pedido['total_pedido'], 2, ',', '.') . '</p>';
-
-                        // Consultar itens do pedido com a nova formatação
-                        $sql_itens = "SELECT i.qtd, i.preco_unita_item, i.sub_total, p.nome_produto 
-                                      FROM itens i
-                                      JOIN produto p ON i.id_produtos = p.id_produto
-                                      WHERE i.id_pedido = " . $pedido['id_pedido'];
-                        $result_itens = mysqli_query($conn, $sql_itens);
-
-                        echo '<ul>';
-                        while ($item = mysqli_fetch_assoc($result_itens)) {
-                            echo '<li><strong>' . $item['nome_produto'] . '</strong> - Quantidade: ' . $item['qtd'] . '<br>';
-                            echo 'Preço Unitário: R$ ' . number_format($item['preco_unita_item'], 2, ',', '.') . ' - Subtotal: R$ ' . number_format($item['sub_total'], 2, ',', '.') . '</li>';
-                        }
-                        echo '</ul>';
-
-                        echo '</div>';
-                    }
-                }
-                ?>
-            </div>
+            <div class="kanban-items" id="feito"></div>
         </div>
     </div>
 
     <script>
-        // Função para mudar o status do pedido
+        function atualizarPedidos() {
+            fetch('buscar_pedidos.php')
+                .then(response => response.json())
+                .then(pedidos => {
+                    document.getElementById('a-fazer').innerHTML = '';
+                    document.getElementById('fazendo').innerHTML = '';
+                    document.getElementById('feito').innerHTML = '';
+
+                    pedidos.forEach(pedido => {
+                        let coluna;
+                        if (pedido.status === 'A fazer') {
+                            coluna = document.getElementById('a-fazer');
+                        } else if (pedido.status === 'Fazendo') {
+                            coluna = document.getElementById('fazendo');
+                        } else if (pedido.status === 'Feito') {
+                            coluna = document.getElementById('feito');
+                        }
+
+                        if (coluna) {
+                            const pedidoDiv = document.createElement('div');
+                            pedidoDiv.className = 'kanban-item';
+                            pedidoDiv.dataset.id = pedido.id_pedido;
+
+                            pedidoDiv.innerHTML = `
+                                <h3>Pedido #${pedido.id_pedido}</h3>
+                                <p>Cliente ID: ${pedido.id_cliente}</p>
+                                <p>Valor Total: R$ ${Number(pedido.total_pedido).toFixed(2).replace('.', ',')}</p>
+                                <ul>
+                                    ${pedido.itens.map(item => `
+                                        <li><strong>${item.nome_produto}</strong> - Quantidade: ${item.qtd}<br>
+                                        Preço Unitário: R$ ${Number(item.preco_unita_item).toFixed(2).replace('.', ',')} - Subtotal: R$ ${Number(item.sub_total).toFixed(2).replace('.', ',')}</li>
+                                    `).join('')}
+                                </ul>
+                                ${pedido.status !== 'Feito' ? `<button onclick="mudarStatus(${pedido.id_pedido}, '${pedido.status === 'A fazer' ? 'Fazendo' : 'Feito'}')">${pedido.status === 'A fazer' ? 'Iniciar' : 'Concluir'}</button>` : ''}
+                            `;
+                            
+                            coluna.appendChild(pedidoDiv);
+                        }
+                    });
+                })
+                .catch(error => console.error('Erro ao buscar pedidos:', error));
+        }
+
         function mudarStatus(idPedido, novoStatus) {
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "mudar_status.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    location.reload(); // Recarregar a página para atualizar o status dos pedidos
+                    atualizarPedidos();
                 }
             };
             xhr.send("id_pedido=" + idPedido + "&status=" + novoStatus);
         }
+
+        setInterval(atualizarPedidos, 5000);
+        atualizarPedidos();
     </script>
 </body>
 </html>
