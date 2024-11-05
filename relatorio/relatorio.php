@@ -11,7 +11,7 @@ function getRelatorioVendasDiarias($data) {
     global $conn;
     $sql = "SELECT COUNT(id_pedido) AS total_pedidos, SUM(total_pedido) AS receita_total 
             FROM pedido 
-            WHERE DATE(data_pedido) = '$data'";
+            WHERE DATE(data_hora_pedido) = '$data'";
     $result = mysqli_query($conn, $sql);
     $relatorio = mysqli_fetch_assoc($result);
     
@@ -20,7 +20,7 @@ function getRelatorioVendasDiarias($data) {
                      FROM itens i 
                      JOIN produto p ON i.id_produtos = p.id_produto 
                      JOIN pedido pd ON i.id_pedido = pd.id_pedido
-                     WHERE DATE(pd.data_pedido) = '$data'
+                     WHERE DATE(pd.data_hora_pedido) = '$data'
                      GROUP BY p.nome_produto 
                      ORDER BY quantidade_vendida DESC 
                      LIMIT 5";
@@ -37,7 +37,7 @@ function getRelatorioProdutosMaisVendidos($data_inicio, $data_fim) {
             FROM itens i 
             JOIN produto p ON i.id_produtos = p.id_produto 
             JOIN pedido pd ON i.id_pedido = pd.id_pedido
-            WHERE DATE(pd.data_pedido) BETWEEN '$data_inicio' AND '$data_fim'
+            WHERE DATE(pd.data_hora_pedido) BETWEEN '$data_inicio' AND '$data_fim'
             GROUP BY p.nome_produto 
             ORDER BY quantidade_vendida DESC 
             LIMIT 10";
@@ -50,7 +50,7 @@ function getRelatorioFinanceiroMensal($mes, $ano) {
     global $conn;
     $sql = "SELECT SUM(total_pedido) AS receita_total 
             FROM pedido 
-            WHERE MONTH(data_pedido) = $mes AND YEAR(data_pedido) = $ano";
+            WHERE MONTH(data_hora_pedido) = $mes AND YEAR(data_hora_pedido) = $ano";
     $result = mysqli_query($conn, $sql);
     $dados = mysqli_fetch_assoc($result);
 
@@ -87,13 +87,12 @@ mysqli_close($conn);
     <link rel="stylesheet" href="relatorio.css">
 </head>
 <body>
-        <!-- Barra de Navegação -->
+    <!-- Barra de Navegação -->
     <nav class="navbar">
         <ul>
             <li><a href="../TelaPedidosEmpresa/Pedidos.php">Pedidos</a></li>
             <li><a href="../CadProdutos/cadastroProdutos.php">Cadastro de Produto</a></li>
-            <li><a href="../cadastroCategoria/cadCategoria.php">Cadastro de Categoria</a></li>
-           
+            <li><a href="../cadastroCategoria/cadastrocategoria.php">Cadastro de Categoria</a></li>
         </ul>
     </nav>
 

@@ -28,7 +28,7 @@
             // tenta executar o comando SQL
             if ( $sql ->execute()){
                //envia o cliente ao login apos o cadastro executado
-               header("Location: ../LoginUsuario/loginUsuario.html");
+               header("Location: ../loginUsuario/loginUsuario.php");
             exit(); // para a execução do script PHP após o redirecionamento
             }
           } //verifica se nome ou e-mail sao unicos no banco

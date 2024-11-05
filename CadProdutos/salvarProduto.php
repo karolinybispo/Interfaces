@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             VALUES ('$id_categoria', '$nome_produto', '$descricao', '$preco_produto', '$qtd_estoque', '$target_file')";
                     
                     if ($conn->query($sql) === TRUE) {
-                        echo "Produto cadastrado com sucesso!";
+                        $mensagem = "<p style='color: green;'>Produto cadastrado com sucesso!</p>";
                     } else {
                         echo "Erro: " . $sql . "<br>" . $conn->error;
                     }
@@ -44,4 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 $conn->close();
+
+include 'cadastroprodutos.php';
 ?>

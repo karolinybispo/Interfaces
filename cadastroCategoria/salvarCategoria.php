@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p style='color: red;'>Erro ao cadastrar categoria: " . $conn->error . "</p>";
     }
 
-    include 'cadCategoria.php';
+    include 'cadastroCategoria.php';
 
     $conn->close();
 }

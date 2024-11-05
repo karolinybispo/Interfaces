@@ -28,8 +28,10 @@
                 </div>
 
                 <div class="link">
-                    <a href="/recuperarSenha/recuperarSenha.html">esqueci a senha</a>
+                    <a href="../recuperarSenha/recuperarSenha.html">esqueci a senha</a>
+                
                 </div>
+                <?php if (isset($mensagem)) echo $mensagem; ?>
             </form>
         </div>
     </div>
