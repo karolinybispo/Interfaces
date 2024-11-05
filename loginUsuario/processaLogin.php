@@ -27,14 +27,16 @@ error_reporting(E_ALL);
             //armazenando o id no localStorege e depois redirecionando o user
            echo " <script>
                 localStorage.setItem('id_cliente', '$id_cliente');
-                 window.location.href = '../cardapio/cardapio.html';
+                 window.location.href = '../cardapio/cardapio.php';
                  </script>";
             
         
         }
         else{
-            echo "nome ou senha nao cadastrados";
+            $mensagem = "<p style='color: red;'> nome ou senha invalido!</p>";
         }
+
+        include 'loginUsuario.php';
         //encerra consulta e conexao
         $sql->close();
         $conn->close();
