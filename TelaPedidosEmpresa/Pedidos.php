@@ -7,7 +7,7 @@ include '../conexaoBanco/db_conexao.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Pedidos - Kanban</title>
+    <title>Gerenciamento de Pedidos </title>
     <link rel="stylesheet" href="kanban.css">
 </head>
 <body>
@@ -16,12 +16,12 @@ include '../conexaoBanco/db_conexao.php';
     <nav class="navbar">
         <ul>
             <li><a href="../CadProdutos/cadastroProdutos.php">Cadastro de Produto</a></li>
-            <li><a href="../cadastroCategoria/cadCategoria.php">Cadastro de Categoria</a></li>
+            <li><a href="../cadastroCategoria/cadastrocategoria.php">Cadastro de Categoria</a></li>
             <li><a href="relatorio.php">Relatório</a></li>
         </ul>
     </nav>
 
-    <h1>Gerenciamento de Pedidos - Kanban</h1>
+    <h1>Gerenciamento de Pedidos </h1>
     <div class="kanban-board">
         <div class="kanban-column">
             <h2>A Fazer</h2>

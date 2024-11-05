@@ -25,7 +25,7 @@ error_reporting(E_ALL);
             //esse script JS faz um alert com uma mensagem e encaminha a empresa para tela de pedidos.
             echo "<script>
                 alert('Login bem-sucedido!');
-                window.location.href = 'interfaces/TelaPedidosEmpresa/Pedidos.php'; 
+                window.location.href = '../TelaPedidosEmpresa/Pedidos.php'; 
               </script>";
         } else {
             echo "<script>

@@ -48,7 +48,7 @@
         </button>
         <div class="navbar-collapse" id="navbar-collapse">
             <ul class="navbar-nav">
-                <li><a href="../cadastroCategoria/cadCategoria.php">Cadastro de categoria</a></li>
+                <li><a href="../cadastroCategoria/cadastroCategoria.php">Cadastro de categoria</a></li>
                 <li><a href="relatorio.html">Relatorios</a></li>
                 <li><a href="../TelaPedidosEmpresa/Pedidos.php">Pedidos online</a></li>
               
@@ -59,6 +59,7 @@
 <div class="container">
     <div class="product-registration-container">
         <div class="product-registration-box">
+        
             <h2>Cadastro de novo produto</h2>
             <form action="salvarProduto.php" method="POST" enctype="multipart/form-data">
                 <div class="campo">
@@ -90,6 +91,7 @@
                 <br>
                 <div class="campo">
                     <button type="submit" class="btn-adicionar">adicionar</button>
+                    <?php if (isset($mensagem)) echo $mensagem; ?>
                 </div>
             </form>
         </div>
