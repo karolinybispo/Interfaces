@@ -6,15 +6,15 @@ error_reporting(E_ALL);
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         include '../conexaoBanco/db_conexao.php'; //arq que faz conexao com BD
-        // if($mySqli->connect_error){
-        // echo "Erro na conexão: " . $mySqli->connect_error; 
+        // if($conn->connect_error){
+        // echo "Erro na conexão: " . $conn->connect_error; 
         // }
 
         $nome = $_POST['nomeInput'];
         $senha = $_POST['senhaInput'];
 
         //inserindo um novo cliente
-        $sql = $mySqli->prepare("SELECT id_cliente FROM tb_clientes WHERE nome_cliente = ? AND senha = ?");
+        $sql = $conn->prepare("SELECT id_cliente FROM cliente WHERE nome_cliente = ? AND senha_cliente = ?");
         $sql -> bind_param("ss", $nome, $senha);
         $sql->execute();
         $sql->store_result();
@@ -37,7 +37,7 @@ error_reporting(E_ALL);
         }
         //encerra consulta e conexao
         $sql->close();
-        $mySqli->close();
+        $conn->close();
 
 }
 ?>

@@ -16,11 +16,11 @@
     include '../conexaoBanco/db_conexao.php'; 
     
     //inclui transacao para garantir consistencia de dados
-    $mySqli->begin_transaction();
+    $conn->begin_transaction();
 
     try {
     //inserir dados na tabela PEDIDOS
-    $sql = $mySqli->prepare("INSERT INTO tb_pedidos (id_cliente, status_pedido, total_pedido, data_hora_pedido, pagamento_pedido) VALUES (?, 'a fazer', ?, NOW(), ?)");
+    $sql = $conn->prepare("INSERT INTO pedido (id_cliente, status_pedido, total_pedido, data_hora_pedido, pagamento) VALUES (?, 'a fazer', ?, NOW(), ?)");
     $sql->bind_param("ids", $id_cliente, $Total_pedido, $pag_pedido); // i= int, s = string, d=decimal
     $sql->execute();
     
@@ -28,7 +28,7 @@
     $id_pedido = $sql->insert_id;
 
     //inserir cada item na tabela ITENS
-    $sql_item = $mySqli->prepare("INSERT INTO tb_itens (id_pedido, id_produto, qtd_item, preco_unita_item, sub_total) VALUES (?,?,?,?,?)");
+    $sql_item = $conn->prepare("INSERT INTO itens (id_pedido, id_produtos, qtd, preco_unita_item, sub_total) VALUES (?,?,?,?,?)");
     
     foreach ($itens as $item) {
         $id_produto = $item[ 'id_produto'];
@@ -42,7 +42,7 @@
         }
         
         // Confirmar a transação
-        $mySqli->commit();
+        $conn->commit();
 
         // Retornar sucesso
         echo json_encode(["success" => true]);
@@ -51,14 +51,14 @@
     catch (Exception $e) 
     {
     // Em caso de erro, reverter a transação
-    $mySqli->rollback();
+    $conn->rollback();
     echo json_encode(["success" => false, "message" => "Erro ao finalizar pedido: " . $e->getMessage()]);
     }
 
     // Fechar conexões
     $sql->close();
     $sql_item->close();
-    $mySqli->close();
+    $conn->close();
 
 
 
