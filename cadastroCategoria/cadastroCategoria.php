@@ -19,7 +19,7 @@
         <div class="navbar-collapse" id="navbar-collapse">
             <ul class="navbar-nav">
                 <li><a href="../CadProdutos/cadastroProdutos.php">Cadastro de novos produtos</a></li>
-                <li><a href="relatorio.html">Relatorios</a></li>
+                <li><a href="../relatorio/relatorio.php">Relatorios</a></li>
                 <li><a href="../TelaPedidosEmpresa/Pedidos.php">Pedidos online</a></li>
 
             </ul>

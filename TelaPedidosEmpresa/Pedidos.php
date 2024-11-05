@@ -17,7 +17,7 @@ include '../conexaoBanco/db_conexao.php';
         <ul>
             <li><a href="../CadProdutos/cadastroProdutos.php">Cadastro de Produto</a></li>
             <li><a href="../cadastroCategoria/cadastrocategoria.php">Cadastro de Categoria</a></li>
-            <li><a href="relatorio.php">Relatório</a></li>
+            <li><a href="../relatorio/relatorio.php">Relatório</a></li>
         </ul>
     </nav>
 
