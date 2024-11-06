@@ -1,0 +1,117 @@
+/*casinha  e humburguer*/
+.humburguer, .home{
+    color: #181717;
+    border: none;
+    background-color: transparent;
+    cursor: pointer; /*quando passar o mause em cima, fica com a maozinha no mause*/
+}
+.humburguer{
+    font-size: 30px;
+}
+
+.home{
+    font-size: 25px;
+}
+
+#icones{
+    top: 10px; /*distancia do topo da tela*/
+    right: 10px; /*distancia da direita da tela*/
+    position: fixed;
+    align-items: flex-start;   }
+
+.SIDE-BAR{
+        display:none; 
+        right:0;
+    }
+
+.alinhamento{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 80px; /* Espaço para não sobrepor o total */
+
+    }    
+.pagamento{
+        background-color: #FFFFFF;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /*efeito de div saindo para fora*/
+        border-radius: 5px; /*arrendondamento*/
+        width: 100%;
+        max-width: 600px;
+        text-align: center; /*texto que esta dentro da div ficou alinhado*/
+        font-weight: bold; /*fonte mais forte*/
+        margin-top: 50px; /*margem em relacao a parte de cima*/
+    }
+
+
+.itens{
+    border-radius: 10px;
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /*efeito de div saindo para fora*/
+    margin-top: 2px; /*distancia do item acima*/
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha os itens à esquerda */
+}
+.itens h5{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.itens button { /*para botao fica a direita inferior, container pai 'titulo' precisou ter 'position relative' e assim as regras aqui funcionaram */
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-size: 18px;
+    background-color: #ff1100;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+.itens img{
+  width: 30%; /* Tamanho da imagem */
+  height: 30%; /* Tamanho da imagem */
+  object-fit: cover; /* Faz a imagem preencher a área sem distorcer */
+  margin-bottom: 10px; /* Espaço entre a imagem e o texto */
+  border-radius: 5px;
+}
+
+/* Estilo do container que possui o total da compra */
+.total {
+    left: 20px; /* Alinha à esquerda */
+    bottom: 20px; /* Coloca na parte inferior */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para destacar */
+    width: 100%; /* Ajusta a largura automaticamente */
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 15px; /*distancia do item acima*/
+  }
+  
+  .total h3 {
+    margin: 0; /* Remove margens do título */
+    font-size: 20px;
+  }
+  
+  .total button {
+    margin-top: 10px; /* Espaço entre o total e o botão */
+    background-color: #f06530;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .total button:hover {
+    background-color: #45a049; /* Efeito de hover */
+  }

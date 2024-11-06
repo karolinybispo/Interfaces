@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperação de Senha</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="recuperarSenhaStyle.css">
+</head>
+<body>
+    <div id="app" class="password-recovery-container">
+        <div  v-if="!emailValidado"  class="password-recovery-box">
+            <h2>Recuperar Senha</h2>
+            <p>insira seu e-mail para receber as instruções de recuperação de senha.</p>
+                <div class="campo">
+                    <label for="email">E-mail</label>
+                    <input  v-model="email" type="email" id="email" name="email" required>
+                </div>
+                <div class="campo">
+                    <button  @click="validarEmail"   type="submit" class="btn-recuperar">Enviar</button>
+                    <p v-if="erro">{{ erro }}</p>
+                </div>
+                <div class="campo">
+                    <button type="button" class="btn-voltar" onclick="window.location.href='../loginUsuario/loginUsuario.html'">Voltar ao Login</button>
+                </div>
+        </div>
+        <div class="password-recovery-box"  v-if="emailValidado">
+            <h3>E-mail validado, altere sua senha</h3>
+            <div class="campo" >
+            <input  v-model="novaSenha" type="password" placeholder="Digite sua nova senha" />
+            <button class="btn-recuperar" type="button"  @click="alterarSenha">Alterar Senha</button>
+            </div>
+            <p v-if="mensagem">{{ mensagem }}</p>
+        </div>
+    </div>
+
+
+    <script>
+        const app = Vue.createApp({
+          data() {
+            return {
+              email: "",
+              novaSenha: "",
+              emailValidado: false,
+              erro: "",
+              mensagem: ""
+            };
+          },
+          methods: {
+            validarEmail() {
+              fetch("http://localhost/interfaces/recuperarSenha/validarEmail.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" }, //informa que o corpo da requisicao é em formato json
+                body: JSON.stringify({ email: this.email })
+              })
+                .then(response => response.json())
+                .then(data => {
+                  if (data.success) {
+                    this.emailValidado = true;
+                    this.erro = "";
+                  } else {
+                      this.erro = data.message; // Exibe mensagem vinda do servidor
+                  }
+                })
+                .catch(error => {
+                      // Atualiza a variável de erro para exibir na página
+                      this.erro = 'Ocorreu um erro ao tentar validar o e-mail: ' + error.message;
+                  });
+            },
+            alterarSenha() {
+              fetch("http://localhost/interfaces/recuperarSenha/alterarSenha.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: this.email, novaSenha: this.novaSenha })
+              })
+                .then(response => response.json())
+                .then(data => {
+                  if (data.success) {
+                    this.mensagem = "Senha alterada com sucesso!";
+                  } else {
+                    this.mensagem = data.message;
+                  }
+                })
+                .catch(err => {
+                  this.mensagem = "Erro ao alterar a senha." + error.mensagem;
+                });
+            }
+          }
+        });
+  
+        app.mount("#app");
+      </script>
+</body>
+</html>
