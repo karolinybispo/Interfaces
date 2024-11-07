@@ -25,17 +25,7 @@
                 <img src="./Logo-Uninga-Alta.png" alt="Uninga">
             </div>
         </div>
-        <nav>
-            <ul>
-                <li>Bebidas</li>
-                <li>Salgados</li>
-                <li>Sobremesas</li>
-                <li>Prato feito</li>
-                <li>Lanches</li>
-            </ul>
-        </nav>
     </header>
-
 
     <main>
         <section class="sugestoes">
@@ -71,7 +61,7 @@
       },
       mounted() {
         // Busca produtos do banco de dados
-        axios.get('http://localhost/interfaces/cardapio/buscarProdutos.php')
+        axios.get('http://localhost/interfaces/cardapio/buscarProduto.php')
           .then(response => {
             this.produtos = response.data; // Atualiza a lista de produtos com os dados do banco
           })
@@ -111,7 +101,7 @@
         },
         irParaCarrinho() {
           // Redireciona para a página de carrinho
-          window.location.href = 'interfaces/carrinho/carrinho.html';
+          window.location.href = '../carrinho/carrinho.html';
         }
       }
     });
