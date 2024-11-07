@@ -11,7 +11,7 @@ header('Content-Type: application/json'); // Define o cabeçalho para JSON
 
 
 // Consulta SQL para buscar todos os produtos 
-$sql = $mySqli->prepare("SELECT id_produto, img_proguto, nome_produto, preco_produto  FROM tb_produtos");
+$sql = $conn->prepare("SELECT id_produto, img_proguto, nome_produto, preco_produto  FROM tb_produtos");
 $sql->execute();
 
 $result = $sql->get_result();
@@ -31,6 +31,6 @@ echo $produtos_json;
 
 //fecha a declaracao
 $sql->close();
-$mySqli->close();
+$conn->close();
 
 ?>
