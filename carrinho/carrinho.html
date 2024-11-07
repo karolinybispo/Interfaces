@@ -110,6 +110,9 @@ async finalizarPedido() { //informa que eh uma funcao assincrona.
             const response = await axios.post('../carrinho/pedidoBanco.php', pedido);
             //console.log("Resposta do servidor:", response.data); //mostra como o servidor responde ao pedido do axios na linha de cima
 
+              localStorage.setItem("total", this.total); //acessa o computed que calcula o total da compra e salva no localStorege para mostrar na tela de pagamento
+              //console.log("valor salvo no localStorege", this.total); //mostra o valor calculado
+
             if(response.data.success){
               this.carrinho =[];
               this.salvarCarrinho();
