@@ -61,14 +61,6 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!--axios-->
     
     <script>
-        function w3_open() {
-            document.getElementById("mySidebar").style.display = "block";
-         }
-  
-        function w3_close() {
-            document.getElementById("mySidebar").style.display = "none";
-        }
-
         const app = Vue.createApp({
             data() {
                 return {
@@ -105,6 +97,7 @@ async finalizarPedido() { //informa que eh uma funcao assincrona.
 
             const pedido = {
               id_cliente: idCliente,
+              total: this.total,
               pagamento_pedido: "pix",
               itens: this.carrinho
             };
@@ -114,8 +107,9 @@ async finalizarPedido() { //informa que eh uma funcao assincrona.
             //envia o que esta dentro de "pedido" ao back
             console.log("Dados do pedido que serão enviados:", JSON.stringify(pedido, null, 2));
 
-            //const response = await axios.post('../carrinho/pedidoBanco.php', pedido);
-            
+            const response = await axios.post('../carrinho/pedidoBanco.php', pedido);
+            console.log("Resposta do servidor:", response.data);
+
             if(response.data.success){
               this.carrinho =[];
               this.salvarCarrinho();
