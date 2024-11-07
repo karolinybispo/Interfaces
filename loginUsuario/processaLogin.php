@@ -13,7 +13,7 @@ error_reporting(E_ALL);
         $nome = $_POST['nomeInput'];
         $senha = $_POST['senhaInput'];
 
-        $sql = $mySqli->prepare("SELECT id_cliente FROM tb_clientes WHERE nome_cliente = ? AND senha = ?");
+        $sql = $mySqli->prepare("SELECT id_cliente FROM cliente WHERE nome_cliente = ? AND senha_cliente = ?");
         $sql -> bind_param("ss", $nome, $senha);
         $sql->execute(); //excuta a consulta de incluir os valores de $nome e $senha dentro dos ?
         $sql->store_result(); //guarda o resultado da consulta feita
