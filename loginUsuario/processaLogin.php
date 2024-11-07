@@ -6,40 +6,36 @@ error_reporting(E_ALL);
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         include '../conexaoBanco/db_conexao.php'; //arq que faz conexao com BD
-        // if($conn->connect_error){
-        // echo "Erro na conexão: " . $conn->connect_error; 
-        // }
+        if($mySqli->connect_error){
+            echo "Erro na conexão: " . $mySqli->connect_error; 
+        }
 
         $nome = $_POST['nomeInput'];
         $senha = $_POST['senhaInput'];
 
-        //inserindo um novo cliente
-        $sql = $conn->prepare("SELECT id_cliente FROM cliente WHERE nome_cliente = ? AND senha_cliente = ?");
+        $sql = $mySqli->prepare("SELECT id_cliente FROM tb_clientes WHERE nome_cliente = ? AND senha = ?");
         $sql -> bind_param("ss", $nome, $senha);
-        $sql->execute();
-        $sql->store_result();
+        $sql->execute(); //excuta a consulta de incluir os valores de $nome e $senha dentro dos ?
+        $sql->store_result(); //guarda o resultado da consulta feita
 
-        if($sql->num_rows > 0) {
-            // Obtém o ID do cliente
-            $sql->bind_result($id_cliente);
-            $sql->fetch();
-
-            //armazenando o id no localStorege e depois redirecionando o user
-           echo " <script>
-                localStorage.setItem('id_cliente', '$id_cliente');
-                 window.location.href = '../cardapio/cardapio.html';
-                 </script>";
+        if($sql->num_rows > 0) { //se o numero de linhas retornadas for maior que 0, o nome e senha inseridos correspondem ao que esta registrado no banco.
             
-        
+            $sql->bind_result($id_cliente); //prepara a variavel $id_cliente para receber o valor da coluna id_cliente do BD
+            $sql->fetch();//executa a extracao do valor da consulta e armazena o resultado na variavel $id_cliente
+
+            //armazenando o id no localStorege (isso permite o id ser recuperado depois) e depois redirecionando o user
+           echo " <script>
+                        localStorage.setItem('id_cliente', '$id_cliente');
+                        window.location.href = '../cardapio/cardapio.html';
+                 </script>";
         }
         else{
-            $mensagem = "<p style='color: red;'> nome ou senha invalido!</p>";
+            echo "nome ou senha nao cadastrados";
         }
 
-        include 'loginUsuario.php';
         //encerra consulta e conexao
         $sql->close();
-        $conn->close();
+        $mySqli->close();
 
 }
 ?>
