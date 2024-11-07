@@ -21,7 +21,7 @@
 
     try {
     //inserir dados na tabela PEDIDOS
-    $sql = $mySqli->prepare("INSERT INTO tb_pedidos (id_cliente, status_pedido, total_pedido, data_hora_pedido, pagamento_pedido) VALUES (?, 'a fazer', ?, NOW(), ?)");
+    $sql = $mySqli->prepare("INSERT INTO tb_pedidos (id_cliente, status_pedido, total_pedido, data_hora_pedido, pagamento_pedido) VALUES (?, 'A fazer', ?, NOW(), ?)");
     $sql->bind_param("ids", $id_cliente, $Total_pedido, $pag_pedido); // i= int, s = string, d=decimal
     $sql->execute();
     
