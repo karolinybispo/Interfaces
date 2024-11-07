@@ -27,7 +27,7 @@ error_reporting(E_ALL);
             //armazenando o id no localStorege e depois redirecionando o user
            echo " <script>
                 localStorage.setItem('id_cliente', '$id_cliente');
-                 window.location.href = '../cardapio/cardapio.php';
+                 window.location.href = '../cardapio/cardapio.html';
                  </script>";
             
         

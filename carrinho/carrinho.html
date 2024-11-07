@@ -16,20 +16,9 @@
 
     <header>
 
-        <!-- Barra de navegacao --> <!--nessa barra de navegacao foi adc itens da barra de navegacao da direita na parte "Left & Right Side Navigation" do w3 que apresenta css do proprio w3 (W3.CSS) para navbar-->
-        <div class="w3-sidebar w3-bar-block w3-card w3-animate-right SIDE-BAR" id="mySidebar"> <!-- esse id sera usado no js como referencia de onde a funcao vai ser executado-->
-        <button onclick="w3_close()" type="button" class="w3-bar-item w3-button w3-large">Close &times;</button> <!--botao close que fica junto com o sidebar-->
-        <a href="#" class="w3-bar-item w3-button">Bebidas</a>
-        <a href="#" class="w3-bar-item w3-button">Salgados</a>
-        <a href="#" class="w3-bar-item w3-button">Sobremesas</a>
-        <a href="#" class="w3-bar-item w3-button">Prato feito</a>
-        <a href="#" class="w3-bar-item w3-button">Lanches</a>
-        </div>
-
 
       <div id="icones">
-            <!-- Icone botao humburguer-->
-            <button class="humburguer" type="button" onclick="w3_open()">   ☰   </button>   <!-- Ao ser apertado a funcao "w3_open()" que abre o side bar eh chamado e fica visivel-->
+           
            
             <!--Icone Casinha-->
             <a href="../cardapio/cardapio.html"> 
@@ -123,12 +112,14 @@ async finalizarPedido() { //informa que eh uma funcao assincrona.
             //console.log("Dados do pedido que serão enviados:", JSON.stringify(pedido, null, 2));
 
             //envia o que esta dentro de "pedido" ao back
-            const response = await axios.post('/interfaces/carrinho/pedidoBanco.php', pedido);
+            console.log("Dados do pedido que serão enviados:", JSON.stringify(pedido, null, 2));
+
+            //const response = await axios.post('../carrinho/pedidoBanco.php', pedido);
             
             if(response.data.success){
               this.carrinho =[];
               this.salvarCarrinho();
-              window.location.href = '/interfaces/pagamento/pag.html'; //leva o user para pag.html
+              window.location.href = '../pagamento/pag.html'; //leva o user para pag.html
             }
             else{
               console.error("erro ao finalizar", response.data.message);

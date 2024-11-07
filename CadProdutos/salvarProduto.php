@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
        // Processar upload de imagem
        $foto = $_FILES['foto'];
-       $target_dir = "uploads/";
+       $target_dir = "../imagens/";
        $target_file = $target_dir . basename($foto["name"]);
        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
        
