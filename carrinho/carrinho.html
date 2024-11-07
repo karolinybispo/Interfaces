@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itens no carrinho</title>
+    <link rel="stylesheet" href="./carrinhoStyle.css">
+
+     <!--Link para usar o icon da casinha, CDN da Font Awesome-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+     <!--W3 shocool para barra de navegacao com humbuguer-->
+     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+    <header>
+
+
+      <div id="icones">
+           
+           
+            <!--Icone Casinha-->
+            <a href="../cardapio/cardapio.html"> 
+                <button type="button" class="home" aria-label="home"> <!--Botao interativo que o user clica. A tag <a> encaminha o user a pagina no href-->
+                    <i class="fa-solid fa-house"></i>   <!-- 'i' renderiza icones -->
+                </button> 
+            </a>
+        </div>
+
+    </header>
+
+    <main>
+        <div id="app" class="alinhamento"> <!--div que defini como todos vao ficar na pg. Div pai-->
+           
+          <div class="pagamento"> <!-- estiliza a div com titulo pagamento-->
+                <h1> Carrinho </h1>
+            </div>
+            <div 
+                v-if="carrinho.length === 0">O carrinho está vazio.
+            </div>
+                        
+            <div class="itens" v-for="item in carrinho" :key="item.id_produto">
+              <h5> {{ item.nome_produto }} | Quantidade: {{ item.quantidade }}  -  Preço: R$ {{ item.preco_produto }} </h5>
+                    <img class="imagem" :src="item.img_proguto" alt="imagem do produto">
+                      <button type="button" @click="removerDoCarrinho(item.id_produto)">Remover</button>
+             </div>
+
+             <div class="total" v-if="carrinho.length > 0">
+                <h3>Total: R$ {{ total }}</h3>
+                <button type="button" @click="finalizarPedido">Finalizar Pedido</button>
+             </div>
+          
+
+
+        </div>
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!--axios-->
+    
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+         }
+  
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                carrinho: []
+        };
+      },
+    computed: {
+        total() {
+          return this.carrinho.reduce((acc, item) => acc + (item.preco_produto * item.quantidade), 0);
+        }
+      },
+    created() {
+        this.carregarCarrinho();
+      },
+    methods: {
+        carregarCarrinho() {
+          const carrinhoSalvo = localStorage.getItem('carrinho');
+          if (carrinhoSalvo) {
+            this.carrinho = JSON.parse(carrinhoSalvo);
+          }
+        },
+    salvarCarrinho() {
+          localStorage.setItem('carrinho', JSON.stringify(this.carrinho));
+        },
+    removerDoCarrinho(id_produto) {
+          this.carrinho = this.carrinho.filter(item => item.id_produto !== id_produto);
+          this.salvarCarrinho();
+        },
+    
+async finalizarPedido() { //informa que eh uma funcao assincrona.
+          try{
+
+            const idCliente = localStorage.getItem('id_cliente'); //pega o id do cliente que entrou no sistema
+
+            const pedido = {
+              id_cliente: idCliente,
+              pagamento_pedido: "pix",
+              itens: this.carrinho
+            };
+            // aqui ve como a estrutura do json
+            //console.log("Dados do pedido que serão enviados:", JSON.stringify(pedido, null, 2));
+
+            //envia o que esta dentro de "pedido" ao back
+            console.log("Dados do pedido que serão enviados:", JSON.stringify(pedido, null, 2));
+
+            //const response = await axios.post('../carrinho/pedidoBanco.php', pedido);
+            
+            if(response.data.success){
+              this.carrinho =[];
+              this.salvarCarrinho();
+              window.location.href = '../pagamento/pag.html'; //leva o user para pag.html
+            }
+            else{
+              console.error("erro ao finalizar", response.data.message);
+            }
+        }
+        catch ( error ) {
+          console.error('erro na rede', error);
+        }
+        }
+      }
+    });
+
+    app.mount('#app');
+    </script>
+
+
+
+</body>
+</html>
