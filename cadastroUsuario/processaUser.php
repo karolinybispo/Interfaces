@@ -35,7 +35,7 @@
                if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
                   if (strpos($e->getMessage(), 'email_cliente') !== false) {
                   echo "Erro: O email já está cadastrado!";
-                } elseif (strpos($e->getMessage(), 'nome') !== false) {
+                } elseif (strpos($e->getMessage(), 'nome_cliente') !== false) {
                     echo "Erro: O nome já está cadastrado!";
                 } else {
                     echo "Erro ao cadastrar: " . $e->getMessage();
