@@ -108,7 +108,7 @@ async finalizarPedido() { //informa que eh uma funcao assincrona.
             console.log("Dados do pedido que serão enviados:", JSON.stringify(pedido, null, 2));
 
             const response = await axios.post('../carrinho/pedidoBanco.php', pedido);
-            console.log("Resposta do servidor:", response.data);
+            //console.log("Resposta do servidor:", response.data); //mostra como o servidor responde ao pedido do axios na linha de cima
 
             if(response.data.success){
               this.carrinho =[];
