@@ -61,7 +61,7 @@
       },
       mounted() {
         // Busca produtos do banco de dados
-        axios.get('http://localhost/interfaces/cardapio/buscarProduto.php')
+        axios.get('http://localhost/interfaces/cardapio/buscarProdutos.php')
           .then(response => {
             this.produtos = response.data; // Atualiza a lista de produtos com os dados do banco
           })
