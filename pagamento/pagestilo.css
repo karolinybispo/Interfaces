@@ -24,6 +24,10 @@
 
 .valor-total{
     margin: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
 }
 
 .pagamento{
