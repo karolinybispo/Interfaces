@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio</title>
+    <link rel="stylesheet" href="cardapio.css">
     
     <!--para funcionar o carrinho icon-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="./cardapio.css">
 
 </head>
 <body>
@@ -26,30 +25,19 @@
                 <img src="./Logo-Uninga-Alta.png" alt="Uninga">
             </div>
         </div>
-        <nav>
-            <ul>
-                <li>Bebidas</li>
-                <li>Salgados</li>
-                <li>Sobremesas</li>
-                <li>Prato feito</li>
-                <li>Lanches</li>
-            </ul>
-        </nav>
     </header>
-
 
     <main>
         <section class="sugestoes">
             <h2>Sugestões do dia</h2>
             <div id="app" class="produto-lista"> <!--vue inicia aqui-->
               
-              <!---os produtos vindos do bd ficarao nesse layout:-->
+              <!---os produtos do vindos do bd ficarao nesse layout:-->
               <div v-for="produto in produtos" :key="produto.id_produto" class="produto"> <!-- produtos serao renderizados na estrutura dessa div-->
                     <img :src="produto.img_proguto"  alt="imagem do produto">
                     <h3>{{produto.nome_produto}}</h3> <!-- o loop "produto" vai pegar o valor que veio da coluna nome_produto que esta no BD--> 
-                    <h4>{{produto.preco_produto}} </h4>
                     <div class="quantidade">
-                        <input title="apenas um elemento com numero" type="number"   min="1" :value="1"> <!--definiu como 1 o valor inicial-->
+                        <input title="apenas um elemento com numero" type="number"  min="1" :value="1"> <!--definiu como 1 o valor inicial-->
                     </div>
                     <button type="button" @click="adcProduto(produto)">Adicionar</button>
                 </div>
@@ -73,7 +61,7 @@
       },
       mounted() {
         // Busca produtos do banco de dados
-        axios.get('http://localhost/interfaces/cardapio/buscarProdutos.php')
+        axios.get('http://localhost/interfaces/cardapio/buscarProduto.php')
           .then(response => {
             this.produtos = response.data; // Atualiza a lista de produtos com os dados do banco
           })
@@ -83,7 +71,6 @@
 
         this.carregarCarrinho(); // Carrega o carrinho do localStorage ao carregar a página
       },
-
       methods: {
         adcProduto(produto) {
           // Verifica se o produto já está no carrinho
@@ -98,12 +85,10 @@
           this.salvarCarrinho(); // Salva o carrinho no localStorage
           alert(`${produto.nome_produto} foi adicionado ao carrinho!`);
         },
-        
         salvarCarrinho() {
           // Salva o carrinho no localStorage
           localStorage.setItem('carrinho', JSON.stringify(this.carrinho));
         },
-
         carregarCarrinho() {
           // Carrega o carrinho do localStorage, se existir
           const carrinhoSalvo = localStorage.getItem('carrinho');
@@ -112,11 +97,11 @@
           } else {
               this.carrinho = []; // Se não existir carrinho salvo, inicia como um array vazio
             }
-        },
 
+        },
         irParaCarrinho() {
           // Redireciona para a página de carrinho
-          window.location.href = 'interfaces/carrinho/carrinho.html';
+          window.location.href = '../carrinho/carrinho.html';
         }
       }
     });

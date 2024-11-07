@@ -66,12 +66,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-  
-}
-
-.sugestoes{
-    text-align: center;
 }
 
 .sugestoes h2 {
@@ -106,25 +100,20 @@ main {
     text-align: center;
     width: 30%; /* Reduzi o tamanho da caixa */
     margin-bottom: 15px; /* Menor espaço entre as caixas */
-    
    
-}.produto h4{
-    font-size: 16px; /*tamanho da fonte*/
-    color: #969696;
 }
+
 
 .produto img {
     width: 100%;
     border-radius: 8px;
     margin-bottom: 10px;
-    height: auto;
 }
 
 .produto h3 {
     font-size: 16px; /* Diminuí o tamanho da fonte */
     margin-bottom: 10px;
     color: #000;
-    font-weight: bold; /*deixando a fonte bold*/
 }
 
 .produto p {
@@ -147,7 +136,7 @@ main {
 
 button {
     background-color: #f06530;
-    color: rgb(255, 255, 255);
+    color: white;
     padding: 10px;
     border: none;
     border-radius: 5px;
