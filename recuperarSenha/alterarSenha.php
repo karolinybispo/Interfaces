@@ -13,7 +13,7 @@ $email = $data['email'];
 $novaSenha = $data['novaSenha'];
 
 // Atualizar a senha no banco de dados
-if ($conn->query("UPDATE cliente SET senha = '$novaSenha' WHERE email_cliente = '$email'")) {
+if ($conn->query("UPDATE cliente SET senha_cliente = '$novaSenha' WHERE email_cliente = '$email'")) {
     echo json_encode(['success' => true, 'message' => 'Senha alterada com sucesso.']);
 } else {
     echo json_encode(['success' => false, 'message' => 'Erro ao alterar a senha.']);
