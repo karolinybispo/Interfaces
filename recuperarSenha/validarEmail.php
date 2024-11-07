@@ -9,7 +9,6 @@ include '../conexaoBanco/db_conexao.php'; //arq que faz conexao com BD
             echo "Erro na conexão: " . $conn->connect_error; 
         }
 
-        
 header('Content-Type: application/json');
 
 // Receber o JSON com o e-mail
@@ -26,3 +25,4 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
+
