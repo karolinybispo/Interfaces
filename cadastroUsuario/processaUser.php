@@ -1,62 +1,52 @@
 <?php
+    
+    //verifica erros
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
-// Verifica erros
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include '../conexaoBanco/db_conexao.php'; 
-    if ($conn->connect_error) { 
-        echo "Erro na conexão: " . $conn->connect_error; 
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+         include '../conexaoBanco/db_conexao.php'; 
+               if ($conn->connect_error) { 
+                  echo "Erro na conexão: " . $conn->connect_error; 
     }
+   
+       //recebendo valores dos inputs
+        $nome = $_POST['nomeInput'];
+        $CPF = $_POST['cpfInput'];
+        $telefone =$_POST['telefoneInput'];
+        $email = $_POST['emailInput'];
+        $senha = $_POST ['senhaInput'];
 
-    // Recebendo valores dos inputs
-    $nome = $_POST['nomeInput'];
-    $CPF = $_POST['cpfInput'];
-    $telefone = $_POST['telefoneInput'];
-    $email = $_POST['emailInput'];
-    $senha = $_POST['senhaInput'];
-
-    // Verifica se o CPF já existe no banco
-    $sqlVerificaCpf = $conn->prepare("SELECT cpf_cliente FROM cliente WHERE cpf_cliente = ?");
-    $sqlVerificaCpf->bind_param("s", $CPF);
-    $sqlVerificaCpf->execute();
-    $resultadoCpf = $sqlVerificaCpf->get_result();
-
-    if ($resultadoCpf->num_rows > 0) {
-        echo "Erro: O CPF já está cadastrado!";
-    } else {
-        // Preparando inserção de dados
-        $sql = $conn->prepare("INSERT INTO cliente (nome_cliente, cpf_cliente, telefone_cliente, email_cliente, senha_cliente)
-                               VALUES (?, ?, ?, ?, ?)");
-        $sql->bind_param("sssss", $nome, $CPF, $telefone, $email, $senha);
-
-        try {
-            $sql->execute(); // Tenta executar o comando SQL
-            // Redireciona para a página de login após o cadastro bem-sucedido
-            header("Location: ../loginUsuario/loginUsuario.php");
-            exit();
-        } catch (mysqli_sql_exception $e) {
-            // Verifica se a mensagem de erro é relacionada a entradas duplicadas
-            if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
-                if (strpos($e->getMessage(), 'email_cliente') !== false) {
-                    echo "Erro: O email já está cadastrado!";
-                } elseif (strpos($e->getMessage(), 'nome') !== false) {
+       //preparando insersao de dados
+         $sql = $conn->prepare("INSERT INTO tb_clientes (nome_cliente, CPF_cliente, telefone_cliente, email_cliente, senha) VALUES (?,?,?,?,?)");
+         $sql->bind_param("sssss", $nome, $CPF, $telefone, $email, $senha);
+        
+         try {
+            // tenta executar o comando SQL
+            if ( $sql ->execute()){
+               //envia o cliente ao login apos o cadastro executado
+                  header("Location: ../LoginUsuario/loginUsuario.html");
+                  exit(); // para a execução do script PHP após o redirecionamento
+            }
+          } //verifica se nome ou e-mail sao unicos no banco
+            catch (mysqli_sql_exception $e) {
+               if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
+                  if (strpos($e->getMessage(), 'email_cliente') !== false) {
+                  echo "Erro: O email já está cadastrado!";
+                } elseif (strpos($e->getMessage(), 'nome_cliente') !== false) { // mudando o valor de nome para nome_cliente para ficar com o mesmo nome da coluna do banco
                     echo "Erro: O nome já está cadastrado!";
                 } else {
                     echo "Erro ao cadastrar: " . $e->getMessage();
                 }
-            } else {
-                // Tratamento para outras exceções, caso necessário
-                echo "Erro ao executar a consulta: " . $e->getMessage();
             }
         }
-
+        
         $sql->close();
-    }
+        $conn->close();      
+      }  
+   ?>
 
-    $sqlVerificaCpf->close();
-    $conn->close();      
-}
-?>
+
+
