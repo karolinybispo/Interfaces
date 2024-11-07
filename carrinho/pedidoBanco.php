@@ -7,6 +7,7 @@
     
     // Receber dados JSON do pedido
     $data = json_decode(file_get_contents("php://input"), true);
+    
     //extraindo dados do pedido vindos do json
     $id_cliente = $data['id_cliente'];
     $Total_pedido =$data['total']; 
@@ -20,7 +21,7 @@
 
     try {
     //inserir dados na tabela PEDIDOS
-    $sql = $conn->prepare("INSERT INTO pedido (id_cliente, status_pedido, total_pedido, data_hora_pedido, pagamento) VALUES (?, 'a fazer', ?, NOW(), ?)");
+    $sql = $conn->prepare("INSERT INTO tb_pedidos (id_cliente, status_pedido, total_pedido, data_hora_pedido, pagamento_pedido) VALUES (?, 'a fazer', ?, NOW(), ?)");
     $sql->bind_param("ids", $id_cliente, $Total_pedido, $pag_pedido); // i= int, s = string, d=decimal
     $sql->execute();
     
@@ -28,7 +29,7 @@
     $id_pedido = $sql->insert_id;
 
     //inserir cada item na tabela ITENS
-    $sql_item = $conn->prepare("INSERT INTO itens (id_pedido, id_produtos, qtd, preco_unita_item, sub_total) VALUES (?,?,?,?,?)");
+    $sql_item = $conn->prepare("INSERT INTO tb_itens (id_pedido, id_produto, qtd_item, preco_unita_item, sub_total) VALUES (?,?,?,?,?)");
     
     foreach ($itens as $item) {
         $id_produto = $item[ 'id_produto'];
@@ -63,3 +64,4 @@
 
 
 ?>
+
