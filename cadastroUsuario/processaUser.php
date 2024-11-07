@@ -20,8 +20,7 @@
         $senha = $_POST ['senhaInput'];
 
        //preparando insersao de dados
-         $sql = $mySqli->prepare("INSERT INTO tb_clientes (nome_cliente, CPF_cliente, telefone_cliente, email_cliente, senha)
-                       VALUES (?,?,?,?,?)");
+         $sql = $mySqli->prepare("INSERT INTO tb_clientes (nome_cliente, CPF_cliente, telefone_cliente, email_cliente, senha) VALUES (?,?,?,?,?)");
          $sql->bind_param("sssss", $nome, $CPF, $telefone, $email, $senha);
         
          try {
