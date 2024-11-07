@@ -18,7 +18,7 @@ error_reporting(E_ALL);
         $sql->execute();
         $sql->store_result();
 
-        if($sql->num_rows > 0) {
+        if($sql->num_rows > 0) { //se o numero de linhas retornadas for maior que 0, o nome e senha correspondem ao que esta registrado no banco.
             header("Location: ../cardapio/cardapio.html");
             exit();
         }
