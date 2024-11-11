@@ -8,42 +8,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $preco_produto = $_POST['preco_produto'];
     $qtd_estoque = $_POST['qtd_estoque'];
 
-       // Processar upload de imagem
-       $foto = $_FILES['foto'];
-       $target_dir = "../imagens/";
+     // Processar upload de imagem
+     $foto = $_FILES['foto'];
+  
+     // Verificar se o arquivo foi enviado corretamente
+     if ($foto["error"] !== UPLOAD_ERR_OK) {
+         echo "Erro no upload: " . $foto["error"];
+         exit;
+     }
+ 
+     // Definir o diretório de destino
+     $target_dir = '/Applications/XAMPP/htdocs/interfaces/CadProdutos/uploads/';
+ 
+       // Criar o caminho completo do arquivo de destino
        $target_file = $target_dir . basename($foto["name"]);
-       $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-       
-        // Verifica se o arquivo foi realmente enviado
-        if ($foto['tmp_name'] !== '') {
-            // Verifica se é uma imagem válida
-            $check = getimagesize($foto["tmp_name"]);
-            if ($check !== false) {
-                if (move_uploaded_file($foto["tmp_name"], $target_file)) {
-                    // Inserir dados no banco de dados
-                    $sql = "INSERT INTO produto (id_categoria, nome_produto , descricao, preco_produto, qtd_estoque, foto)
-                            VALUES ('$id_categoria', '$nome_produto', '$descricao', '$preco_produto', '$qtd_estoque', '$target_file')";
-                    
-                    if ($conn->query($sql) === TRUE) {
-                        $mensagem = "<p style='color: green;'>Produto cadastrado com sucesso!</p>";
-                    } else {
-                        echo "Erro: " . $sql . "<br>" . $conn->error;
-                    }
-                } else {
-                    echo "Erro ao enviar a imagem.";
+ 
+         // Verificar se o arquivo é uma imagem válida
+     if ($foto['tmp_name'] !== '' && getimagesize($foto['tmp_name']) !== false) {
+         // Tentar mover o arquivo para o diretório de destino
+         if (move_uploaded_file($foto["tmp_name"], $target_file)) {
+             // O arquivo foi movido com sucesso
+ 
+             // Inserir o produto no banco de dados com o caminho da imagem
+             $sql = "INSERT INTO produto (id_categoria, nome_produto, descricao, preco_produto, qtd_estoque, foto)
+                     VALUES ('$id_categoria', '$nome_produto', '$descricao', '$preco_produto', '$qtd_estoque', '$target_file')";
+ 
+             if ($conn->query($sql) === TRUE) {
+                 echo "<p style='color: green;'>Produto cadastrado com sucesso!</p>";
+             } else {
+                 echo "Erro ao inserir no banco de dados: " . $conn->error;
+             }
+         } else {
+             echo "Erro ao mover a imagem para o diretório." . error_get_last()['message'];
                 }
             } else {
-                echo "Arquivo enviado não é uma imagem.";
+                echo "O arquivo enviado não é uma imagem ou não foi enviado corretamente.";
             }
         } else {
-            echo "Nenhum arquivo de imagem foi enviado.";
+            echo "Todos os campos do formulário são obrigatórios.";
         }
-    } else {
-        echo "Todos os campos do formulário são obrigatórios.";
-    }
-
-
-$conn->close();
-
-include 'cadastroprodutos.php';
-?>
+        
+        include 'cadastroProdutos.php';
+        ?>
