@@ -20,6 +20,7 @@ $result = $sql->get_result();
 //criando array e armazenado ent tiver valor
 $produtos = [];
 while ($row = $result->fetch_assoc()){
+    $row['img_proguto'] = 'http://localhost/interfaces/CadProdutos/uploads/' . basename($row['img_proguto']); // necessario para o navegador conseguir acessar a imagem no servidor
     $produtos[] = $row; // cada produto sera adc 
 }
 
