@@ -36,6 +36,7 @@
               <div v-for="produto in produtos" :key="produto.id_produto" class="produto"> <!-- produtos serao renderizados na estrutura dessa div-->
                 <img :src="produto.img_proguto" alt="imagem do produto">
                 <h3>{{produto.nome_produto}}</h3> <!-- o loop "produto" vai pegar o valor que veio da coluna nome_produto que esta no BD--> 
+                <h3>R$ {{produto.preco_produto}}</h3>
                     <div class="quantidade">
                         <input title="apenas um elemento com numero" type="number"  min="1" :value="1"> <!--definiu como 1 o valor inicial-->
                     </div>
@@ -63,7 +64,6 @@
         // Busca produtos do banco de dados
         axios.get('http://localhost/interfaces/cardapio/buscarProduto.php')
           .then(response => {
-            console.log(response.data); // Verifique o que está sendo retornado
             this.produtos = response.data; // Atualiza a lista de produtos com os dados do banco
           })
           .catch(error => {
