@@ -2,13 +2,13 @@
 include '../conexaoBanco/db_conexao.php'; // Verifique se o caminho está correto
 
 // Testando a conexão (remova o echo 'Conexão realizada' para evitar erros)
-if (!$conn) {
+if (!$mySqli) {
     die("Erro na conexão com o banco de dados: " . mysqli_connect_error());
 }
 
 // Consultar as categorias no banco de dados
-$sql = "SELECT * FROM categoria";
-$result = mysqli_query($conn, $sql);
+$sql = "SELECT * FROM tb_categorias";
+$result = mysqli_query($mySqli, $sql);
 
 $categorias = array();
 

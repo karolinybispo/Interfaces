@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($check !== false) {
                 if (move_uploaded_file($foto["tmp_name"], $target_file)) {
                     // Inserir dados no banco de dados
-                    $sql = "INSERT INTO produto (id_categoria, nome_produto , descricao, preco_produto, qtd_estoque, foto)
+                    $sql = "INSERT INTO tb_produtos (id_categoria, nome_produto , descricao_produto, preco_produto, qtd_estoque_produto, img_proguto)
                             VALUES ('$id_categoria', '$nome_produto', '$descricao', '$preco_produto', '$qtd_estoque', '$target_file')";
                     
                     if ($conn->query($sql) === TRUE) {
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-$conn->close();
+$mySqli->close();
 
 include 'cadastroprodutos.php';
 ?>
