@@ -97,7 +97,6 @@
         </div>
     </div>
 </div>
-    <script src="./scriptProdutos.js"></script>
 </body>
 </html>
 
