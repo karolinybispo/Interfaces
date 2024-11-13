@@ -30,6 +30,22 @@ body {
     height: 50px;
 }
 
+.header-bar .logo  img {
+    height: 70px;
+}
+
+.car{ 
+    margin-right: 15px;/*deixando afastado da logo*/
+    font-size: 19px;/*deixando o carrino maior*/
+}
+
+.logo{
+    display: flex;
+    align-items: center; /* Alinha verticalmente no centro */
+    gap: 10px; /* Espaço entre o carrinho e o logo */
+}
+
+
 nav {
     background-color: #f06530;
     width: 100%;
