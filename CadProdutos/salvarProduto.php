@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                      VALUES ('$id_categoria', '$nome_produto', '$descricao', '$preco_produto', '$qtd_estoque', '$caminho_relativo')";
  
              if ($conn->query($sql) === TRUE) {
-                 echo "<p style='color: green;'>Produto cadastrado com sucesso!</p>";
+                 $mensagem = "<p style='color: green;'>Produto cadastrado com sucesso!</p>";
              } else {
                  echo "Erro ao inserir no banco de dados: " . $conn->error;
              }
