@@ -26,8 +26,13 @@ body {
     width: 250px;
 }
 
-.header-bar .logo img {
-    height: 50px;
+.header-bar .logo  img {
+    height: 70px;
+}
+
+.car{
+    margin-right: 15px;
+    font-size: 19px;
 }
 
 nav {
@@ -149,6 +154,11 @@ button:hover {
     background-color: #e0542b;
 }
 
+.logo{
+    display: flex;
+    align-items: center; /* Alinha verticalmente no centro */
+    gap: 10px; /* Espaço entre o carrinho e o logo */
+}
 /* Responsividade */
 @media (max-width: 768px) {
     .produto {
