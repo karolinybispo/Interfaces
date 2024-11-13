@@ -64,6 +64,7 @@
         // Busca produtos do banco de dados
         axios.get('http://localhost/interfaces/cardapio/buscarProduto.php')
           .then(response => {
+            //console.log(response.data); //ver como a resposta jason vem
             this.produtos = response.data; // Atualiza a lista de produtos com os dados do banco
           })
           .catch(error => {
