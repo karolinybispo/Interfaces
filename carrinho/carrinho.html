@@ -42,7 +42,7 @@
                         
             <div class="itens" v-for="item in carrinho" :key="item.id_produto">
               <h5> {{ item.nome_produto }} | Quantidade: {{ item.quantidade }}  -  Preço: R$ {{ item.preco_produto }} </h5>
-                    <img class="imagem" :src="item.img_proguto" alt="imagem do produto">
+                    <img class="imagem" :src="item.foto" alt="imagem do produto">
                       <button type="button" @click="removerDoCarrinho(item.id_produto)">Remover</button>
              </div>
 
@@ -80,6 +80,7 @@
           const carrinhoSalvo = localStorage.getItem('carrinho');
           if (carrinhoSalvo) {
             this.carrinho = JSON.parse(carrinhoSalvo);
+            
           }
         },
     salvarCarrinho() {
