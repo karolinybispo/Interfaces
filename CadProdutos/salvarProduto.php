@@ -18,20 +18,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      }
  
      // Definir o diretório de destino
-     $target_dir = '/Applications/XAMPP/htdocs/interfaces/CadProdutos/uploads/';
+     $target_dir = "C:\\xampp\\htdocs\\interfaces\\CadProdutos\\uploads\\";
  
        // Criar o caminho completo do arquivo de destino
-       $target_file = $target_dir . basename($foto["name"]);
- 
+       $nome_arquivo = basename($foto["name"]);
+       $target_file = $target_dir . $nome_arquivo;
+
          // Verificar se o arquivo é uma imagem válida
      if ($foto['tmp_name'] !== '' && getimagesize($foto['tmp_name']) !== false) {
          // Tentar mover o arquivo para o diretório de destino
          if (move_uploaded_file($foto["tmp_name"], $target_file)) {
              // O arquivo foi movido com sucesso
+
+              // Caminho relativo para salvar no banco de dados
+            $caminho_relativo = "interfaces/CadProdutos/uploads/" . $nome_arquivo;
+
  
              // Inserir o produto no banco de dados com o caminho da imagem
              $sql = "INSERT INTO produto (id_categoria, nome_produto, descricao, preco_produto, qtd_estoque, foto)
-                     VALUES ('$id_categoria', '$nome_produto', '$descricao', '$preco_produto', '$qtd_estoque', '$target_file')";
+                     VALUES ('$id_categoria', '$nome_produto', '$descricao', '$preco_produto', '$qtd_estoque', '$caminho_relativo')";
  
              if ($conn->query($sql) === TRUE) {
                  echo "<p style='color: green;'>Produto cadastrado com sucesso!</p>";

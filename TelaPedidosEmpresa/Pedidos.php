@@ -7,7 +7,7 @@ include '../conexaoBanco/db_conexao.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Pedidos </title>
+    <title>Gerenciamento de Pedidos</title>
     <link rel="stylesheet" href="kanban.css">
 </head>
 <body>
@@ -21,7 +21,7 @@ include '../conexaoBanco/db_conexao.php';
         </ul>
     </nav>
 
-    <h1>Gerenciamento de Pedidos </h1>
+    <h1>Gerenciamento de Pedidos</h1>
     <div class="kanban-board">
         <div class="kanban-column">
             <h2>A Fazer</h2>
@@ -48,11 +48,11 @@ include '../conexaoBanco/db_conexao.php';
 
                     pedidos.forEach(pedido => {
                         let coluna;
-                        if (pedido.status === 'A fazer') {
+                        if (pedido.status.toLowerCase() === 'a fazer') {
                             coluna = document.getElementById('a-fazer');
-                        } else if (pedido.status === 'Fazendo') {
+                        } else if (pedido.status.toLowerCase() === 'fazendo') {
                             coluna = document.getElementById('fazendo');
-                        } else if (pedido.status === 'Feito') {
+                        } else if (pedido.status.toLowerCase() === 'feito') {
                             coluna = document.getElementById('feito');
                         }
 
@@ -60,6 +60,17 @@ include '../conexaoBanco/db_conexao.php';
                             const pedidoDiv = document.createElement('div');
                             pedidoDiv.className = 'kanban-item';
                             pedidoDiv.dataset.id = pedido.id_pedido;
+
+                            // Lógica para exibir o botão correto
+                            let botaoTexto = '';
+                            let proximoStatus = '';
+                            if (pedido.status.toLowerCase() === 'a fazer') {
+                                botaoTexto = 'Iniciar';
+                                proximoStatus = 'fazendo';
+                            } else if (pedido.status.toLowerCase() === 'fazendo') {
+                                botaoTexto = 'Concluir';
+                                proximoStatus = 'feito';
+                            }
 
                             pedidoDiv.innerHTML = `
                                 <h3>Pedido #${pedido.id_pedido}</h3>
@@ -71,7 +82,7 @@ include '../conexaoBanco/db_conexao.php';
                                         Preço Unitário: R$ ${Number(item.preco_unita_item).toFixed(2).replace('.', ',')} - Subtotal: R$ ${Number(item.sub_total).toFixed(2).replace('.', ',')}</li>
                                     `).join('')}
                                 </ul>
-                                ${pedido.status !== 'Feito' ? `<button onclick="mudarStatus(${pedido.id_pedido}, '${pedido.status === 'A fazer' ? 'Fazendo' : 'Feito'}')">${pedido.status === 'A fazer' ? 'Iniciar' : 'Concluir'}</button>` : ''}
+                                ${pedido.status.toLowerCase() !== 'feito' ? `<button onclick="mudarStatus(${pedido.id_pedido}, '${proximoStatus}')">${botaoTexto}</button>` : ''}
                             `;
                             
                             coluna.appendChild(pedidoDiv);
@@ -98,3 +109,5 @@ include '../conexaoBanco/db_conexao.php';
     </script>
 </body>
 </html>
+
+

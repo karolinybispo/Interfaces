@@ -5,9 +5,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_pedido']) && isset(
     $id_pedido = intval($_POST['id_pedido']);
     $novo_status = $_POST['status'];
 
-    $status_permitidos = ['A fazer', 'Fazendo', 'Feito'];
-    if (in_array($novo_status, $status_permitidos)) {
-        $sql = "UPDATE pedido SET status = '$novo_status' WHERE id_pedido = $id_pedido";
+    $status_permitidos = ['a fazer', 'fazendo', 'feito'];
+    if (in_array(strtolower($novo_status), $status_permitidos)) {
+        $sql = "UPDATE pedido SET status_pedido = '$novo_status' WHERE id_pedido = $id_pedido";
         if (mysqli_query($conn, $sql)) {
             echo "Status atualizado com sucesso!";
         } else {
@@ -22,3 +22,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_pedido']) && isset(
 
 mysqli_close($conn);
 ?>
+
+
