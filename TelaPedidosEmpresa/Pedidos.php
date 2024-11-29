@@ -4,12 +4,14 @@ include '../conexaoBanco/db_conexao.php';
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Pedidos</title>
     <link rel="stylesheet" href="kanban.css">
 </head>
+
 <body>
 
     <!-- Barra de Navegação -->
@@ -61,6 +63,10 @@ include '../conexaoBanco/db_conexao.php';
                             pedidoDiv.className = 'kanban-item';
                             pedidoDiv.dataset.id = pedido.id_pedido;
 
+                            const voucherInfo = pedido.status.toLowerCase() === 'feito' && pedido.voucher ?
+                                `<p><strong>Voucher:</strong> ${pedido.voucher}</p>` :
+                                '';
+
                             // Lógica para exibir o botão correto
                             let botaoTexto = '';
                             let proximoStatus = '';
@@ -76,6 +82,7 @@ include '../conexaoBanco/db_conexao.php';
                                 <h3>Pedido #${pedido.id_pedido}</h3>
                                 <p>Cliente ID: ${pedido.id_cliente}</p>
                                 <p>Valor Total: R$ ${Number(pedido.total_pedido).toFixed(2).replace('.', ',')}</p>
+                                ${voucherInfo}
                                 <ul>
                                     ${pedido.itens.map(item => `
                                         <li><strong>${item.nome_produto}</strong> - Quantidade: ${item.qtd}<br>
@@ -84,7 +91,7 @@ include '../conexaoBanco/db_conexao.php';
                                 </ul>
                                 ${pedido.status.toLowerCase() !== 'feito' ? `<button onclick="mudarStatus(${pedido.id_pedido}, '${proximoStatus}')">${botaoTexto}</button>` : ''}
                             `;
-                            
+
                             coluna.appendChild(pedidoDiv);
                         }
                     });
@@ -98,16 +105,25 @@ include '../conexaoBanco/db_conexao.php';
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    atualizarPedidos();
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.status === "success") {
+                        alert(response.message);
+                        if (response.voucher) {
+                            alert("Voucher gerado: " + response.voucher);
+                        }
+                        atualizarPedidos();
+                    } else {
+                        alert(response.message);
+                    }
                 }
             };
             xhr.send("id_pedido=" + idPedido + "&status=" + novoStatus);
         }
 
+
         setInterval(atualizarPedidos, 5000);
         atualizarPedidos();
     </script>
 </body>
+
 </html>
-
-
