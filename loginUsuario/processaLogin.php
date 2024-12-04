@@ -13,10 +13,15 @@ error_reporting(E_ALL);
         $nome = $_POST['nomeInput'];
         $senha = $_POST['senhaInput'];
 
-        $sql = $mySqli->prepare("SELECT id_cliente FROM tb_clientes WHERE nome_cliente = ? AND senha = ?");
-        $sql -> bind_param("ss", $nome, $senha);
+
+
+        //beneficios: consulta segura - os dados inseridos sao tratados como dados puros e nao como codigo sql. Projetege contra sql injecao
+
+
+        $sql = $mySqli->prepare("SELECT id_cliente FROM tb_clientes WHERE nome_cliente = ? AND senha = ?"); // o SQL eh preparado pelo banco de dados
+        $sql -> bind_param("ss", $nome, $senha); //insere os valores como dados puros
         $sql->execute(); //excuta a consulta de incluir os valores de $nome e $senha dentro dos ?
-        $sql->store_result(); //guarda o resultado da consulta feita
+        $sql->store_result(); //guarda todos os resultado da consulta feita
 
         if($sql->num_rows > 0) { //se o numero de linhas retornadas for maior que 0, o nome e senha inseridos correspondem ao que esta registrado no banco.
             
