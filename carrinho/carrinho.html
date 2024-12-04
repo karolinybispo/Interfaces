@@ -37,7 +37,7 @@
                 <h1> Carrinho </h1>
             </div>
             <div 
-                v-if="carrinho.length === 0">O carrinho está vazio.
+                v-if="carrinho.length === 0"> O carrinho está vazio.
             </div>
                         
             <div class="itens" v-for="item in carrinho" :key="item.id_produto">
@@ -67,13 +67,14 @@
                 carrinho: []
         };
       },
-    computed: {
+    computed: { // sao valores que dependem de outros dados do vue, eh reativo, mudou algo, ele muda tbm
         total() {
-          return this.carrinho.reduce((acc, item) => acc + (item.preco_produto * item.quantidade), 0);
+          return this.carrinho.reduce((acc, item) => acc + (item.preco_produto * item.quantidade), 0);// redece() eh um metodo de array no js que acumula um valor ao percorrrer cada item dentro do array, acc(o acumulador) eh a variavel que guarda o valor acumulado a medida que a funcao eh aplicada a cada item.
+          //reduce recebe dois parametros, o acumulador e o item atual do array que esta sendo processado no momento.
         }
       },
     created() {
-        this.carregarCarrinho();
+        this.carregarCarrinho(); // assim que a pagina carrega, a funcao carregarCarrinho do methods eh chaamda. No cardapio o carrinho foi armazenado no localStorege e no methos ele esta sendo recuperado
       },
     methods: {
         carregarCarrinho() {
@@ -91,16 +92,20 @@
         },
     
 async finalizarPedido() { //informa que eh uma funcao assincrona.
-          try{
+          
+  
+            try{
 
             const idCliente = localStorage.getItem('id_cliente'); //pega o id do cliente que entrou no sistema
-
-            const pedido = {
+            
+            //obj js
+            const pedido = { 
               id_cliente: idCliente,
               total: this.total,
               pagamento_pedido: "pix",
               itens: this.carrinho
             };
+
             // aqui ve como a estrutura do json
             //console.log("Dados do pedido que serão enviados:", JSON.stringify(pedido, null, 2));
 
