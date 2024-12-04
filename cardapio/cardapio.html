@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
+  <!--axios eh uma biblioteca que facilita o uso de AJAX (tecnica para recarregar dados de maniera assincrona sem recarregar a pg) eh mais simpels, sporte a promessas, intercpeta e converte dados para json-->
 </head>
 <body>
     <header>
@@ -69,7 +70,7 @@
       mounted() {
         // Busca produtos do banco de dados
         axios.get('http://localhost/interfaces/cardapio/buscarProduto.php')
-        // se a resposta for positiva para a funcao then(). Axios automati converte a resposta em um obj js
+        // se a resposta for positiva para a funcao .then, axios automati converte a resposta para um objeto js
           .then(response => {
             //console.log(response.data); //ver como a resposta jason vem
             this.produtos = response.data; // Atualiza a lista de produtos com os dados do banco
