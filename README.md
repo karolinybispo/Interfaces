@@ -3,4 +3,4 @@
 ## Branchs
 - main: ficam os arquivos para produção.
 - devlop: arquivos recebidos da branch release.
-- release: cria, modifica, altera os arquivos.
+- release e meurepo2: cria, modifica, altera os arquivos.
